@@ -9,10 +9,7 @@
 <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png" />
 <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
 <link rel="preload" href="assets/Rickshaw.woff2" as="font" type="font/woff2" crossorigin />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<script src="https://unpkg.com/lucide@latest"></script>
+<script src="assets/lucide.min.js"></script>
 <style>
   @font-face{
     font-family:'Rickshaw';
@@ -21,6 +18,22 @@
         url('assets/Rickshaw.ttf') format('truetype');
     font-weight:normal; font-style:normal; font-display:block;
   }
+  /* self-hosted Inter (DSGVO: keine Verbindung zu Google) */
+  @font-face{ font-family:'Inter'; font-style:normal; font-weight:400; font-display:swap;
+    src:url('assets/fonts/inter-v20-latin_latin-ext-regular.woff2') format('woff2'); }
+  @font-face{ font-family:'Inter'; font-style:normal; font-weight:500; font-display:swap;
+    src:url('assets/fonts/inter-v20-latin_latin-ext-500.woff2') format('woff2'); }
+  @font-face{ font-family:'Inter'; font-style:normal; font-weight:600; font-display:swap;
+    src:url('assets/fonts/inter-v20-latin_latin-ext-600.woff2') format('woff2'); }
+  @font-face{ font-family:'Inter'; font-style:normal; font-weight:700; font-display:swap;
+    src:url('assets/fonts/inter-v20-latin_latin-ext-700.woff2') format('woff2'); }
+  /* self-hosted Sora */
+  @font-face{ font-family:'Sora'; font-style:normal; font-weight:600; font-display:swap;
+    src:url('assets/fonts/sora-v17-latin_latin-ext-600.woff2') format('woff2'); }
+  @font-face{ font-family:'Sora'; font-style:normal; font-weight:700; font-display:swap;
+    src:url('assets/fonts/sora-v17-latin_latin-ext-700.woff2') format('woff2'); }
+  @font-face{ font-family:'Sora'; font-style:normal; font-weight:800; font-display:swap;
+    src:url('assets/fonts/sora-v17-latin_latin-ext-800.woff2') format('woff2'); }
   :root{
     --awn:        #0c5fb0;   /* awning cobalt */
     --awn-deep:   #0a4e91;   /* awning shadow / cassette */
@@ -247,6 +260,18 @@
   /* ============ INSTAGRAM ============ */
   .insta-body{ padding:8px 28px 32px; }
   .insta-body .sk-instagram-feed{ min-height:120px; }
+  .insta-consent{ display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:12px; text-align:center; padding:40px 28px; min-height:160px;
+    background:var(--tint); border:1px solid var(--tint-line); border-radius:16px; }
+  .insta-consent > svg{ width:34px; height:34px; color:var(--blue); }
+  .insta-consent p{ margin:0; max-width:440px; font-size:13.5px; line-height:1.6; color:var(--ink-2); }
+  .insta-consent p b{ color:var(--ink); }
+  .insta-consent button{ font-family:'Inter',sans-serif; font-weight:700; font-size:14px; color:#fff;
+    background:linear-gradient(150deg,var(--blue-2),var(--blue)); border:0; padding:11px 22px;
+    border-radius:999px; cursor:pointer; box-shadow:0 8px 18px -6px rgba(12,98,184,.7);
+    transition:transform .2s, box-shadow .2s; }
+  .insta-consent button:hover{ transform:translateY(-2px); box-shadow:0 12px 22px -6px rgba(12,98,184,.8); }
+  .insta-consent a{ font-size:12.5px; font-weight:600; color:var(--blue); text-decoration:none; }
 
   /* ============ KONTAKT / ANFAHRT ============ */
   .contact-grid{ display:grid; grid-template-columns:1fr 1fr; gap:30px; padding:24px 36px 36px; }
@@ -282,6 +307,8 @@
   footer a{ color:#cfe0f4; text-decoration:none; }
   footer a:hover{ text-decoration:underline; }
   footer .copyright{ margin-top:6px; color:#7e98b8; font-size:12.5px; }
+  footer .legal{ margin-top:8px; font-size:12.5px; }
+  footer .legal a{ color:#bcd2e8; font-weight:600; }
 
   @media (max-width:760px){
     .grid, .contact-grid{ grid-template-columns:1fr; gap:22px; padding:22px 22px 30px; }
@@ -401,8 +428,12 @@
         </div>
       </div>
       <div class="insta-body">
-        <div class="sk-instagram-feed" data-embed-id="25687495"></div>
-        <script src="https://widgets.sociablekit.com/instagram-feed/widget.js" defer></script>
+        <div class="insta-consent" id="instaConsent">
+          <svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+          <p>Hier wird unser Instagram-Feed über <b>SociableKit</b> geladen. Dabei werden Daten (u.&nbsp;a. Ihre IP-Adresse) an Dritte – u.&nbsp;a. <b>Meta Platforms, Inc.</b> – übertragen.</p>
+          <button type="button" id="instaBtn">Instagram-Feed laden</button>
+          <a href="https://www.instagram.com/" target="_blank" rel="noopener">Direkt auf Instagram ansehen ↗</a>
+        </div>
       </div>
     </section>
 
@@ -459,6 +490,7 @@
     <div class="fb">Asien-Haus</div>
     Schmiedtorstraße 7 und 11 · 72070 Tübingen · Inhaber: Johannes Hegedüs
     <div class="copyright">© <span id="year">2026</span> Asien-Haus · Alle Rechte vorbehalten</div>
+    <div class="legal"><a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a></div>
   </footer>
 
 <script>
@@ -479,6 +511,23 @@
       `<div class="deco-cluster tr" style="transform:rotate(20deg)">${cluster()}</div>`
       + `<div class="deco-cluster bl" style="transform:rotate(-8deg)">${cluster()}</div>`);
   });
+
+  /* ---- DSGVO-friendly Instagram: load SociableKit widget only on click ---- */
+  (function(){
+    var btn = document.getElementById('instaBtn');
+    if (!btn) return;
+    btn.addEventListener('click', function(){
+      var consent = document.getElementById('instaConsent');
+      var feed = document.createElement('div');
+      feed.className = 'sk-instagram-feed';
+      feed.setAttribute('data-embed-id', '25687495');
+      consent.replaceWith(feed);
+      var s = document.createElement('script');
+      s.src = 'https://widgets.sociablekit.com/instagram-feed/widget.js';
+      s.defer = true;
+      document.body.appendChild(s);
+    });
+  })();
 
   /* ---- DSGVO-friendly map: load OpenStreetMap only on click ---- */
   document.getElementById('mapBtn').addEventListener('click', function(){
