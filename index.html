@@ -115,6 +115,14 @@
     background-repeat:repeat-x;
     filter:drop-shadow(0 5px 6px rgba(0,0,0,.28));
   }
+  /* shrink the awning bar a bit on small screens */
+  @media (max-width:600px){
+    .awning{ padding:16px 20px 12px; }
+    .awning .brand{ gap:6px; }
+    .brand .wordmark{ font-size:clamp(40px,12vw,88px); }
+    .brand .sub{ font-size:11px; letter-spacing:.26em; }
+    .valance{ height:26px; background-size:46px 46px; }
+  }
 
   /* ============ INTRO ============ */
   .intro{ text-align:center; color:#eaf3fc; padding:38px 24px 4px; }
@@ -143,16 +151,14 @@
      rounded corners (top-right + bottom-left). */
   .card > .deco-cluster{ position:absolute; pointer-events:none; z-index:0; }
   .card > .deco-cluster.tr{ top:-46px; right:-46px; left:auto; }
-  .card > .deco-cluster.bl{ bottom:-46px; left:-46px; top:auto; }
   .card > .deco-cluster b{ background:rgba(12,98,184,.055); }
   .card > .deco-cluster b.g{ background:rgba(214,169,78,.07); }
   .deco-cluster{ position:relative; width:260px; height:260px; }
   .deco-cluster b{ position:absolute; display:block; }
   /* keep card content above the motif */
-  .card-head, .grid, .contact-grid, .insta-body{ position:relative; z-index:1; }
+  .card-head, .grid, .contact-grid, .insta-body, .features{ position:relative; z-index:1; }
 
   @media (max-width:760px){
-    .card > .deco-cluster.bl{ display:none; }                     /* keep just one, lighter */
     .card > .deco-cluster.tr{ transform:scale(.7); transform-origin:top right; }
   }
   .card{
@@ -194,8 +200,8 @@
   @media (max-width:760px){ .status .txt small{ display:none; } .status{ padding:8px 13px; } }
 
   /* compact variant when the badge sits in the hours-panel header */
-  .hours .h-top .status{ padding:4px 10px 4px 8px; font-size:12px; gap:6px; border-radius:999px; }
-  .hours .h-top .status .dot{ width:7px; height:7px; }
+  .hours .h-top .status{ padding:4px 11px 4px 9px; font-size:11px; gap:6px; border-radius:999px; }
+  .hours .h-top .status .dot{ width:6px; height:6px; }
   .hours .h-top .status .txt small{ display:none; }
   @media (max-width:760px){
     .hours .h-top{ flex-wrap:wrap; }
@@ -207,7 +213,7 @@
     font-family:'Sora',sans-serif; font-weight:700; letter-spacing:-.02em;
     font-size:clamp(28px,3.4vw,38px); margin:0; color:var(--ink);
   }
-  .grid{ display:grid; grid-template-columns:1.15fr .85fr; gap:30px; padding:24px 36px 36px; align-items:start; }
+  .grid{ display:grid; grid-template-columns:1.15fr .85fr; gap:30px; padding:24px 36px 28px; align-items:start; }
   /* allow grid/flex children to shrink below their min-content width so that
      long words / nowrap pills don't blow the column past the card edge */
   .grid > *, .contact-grid > *{ min-width:0; }
@@ -217,14 +223,20 @@
   .prose p{ font-size:16px; line-height:1.78; color:var(--ink-2); margin:0 0 16px; }
   .prose p:last-child{ margin-bottom:0; }
 
-  .features{ display:flex; flex-wrap:wrap; gap:10px; margin:20px 0 4px; }
-  .chip{
-    display:inline-flex; align-items:center; gap:8px;
-    background:var(--tint); border:1px solid var(--tint-line);
-    color:#0f4d8c; font-weight:600; font-size:13.5px;
-    padding:9px 14px; border-radius:999px;
+  /* feature tags as a full-width footer bar at the bottom of each card */
+  .features{
+    display:flex; flex-wrap:wrap; gap:8px; margin:0;
+    padding:16px 36px 24px;
+    border-top:1px solid var(--tint-line);
+    background:rgba(233,242,252,.5);
   }
-  .chip i{ width:16px; height:16px; color:var(--blue); }
+  .chip{
+    display:inline-flex; align-items:center; gap:7px;
+    background:var(--card); border:1px solid var(--tint-line);
+    color:#0f4d8c; font-weight:600; font-size:12px;
+    padding:6px 11px; border-radius:999px;
+  }
+  .chip i{ width:14px; height:14px; color:var(--blue); }
   .chip b{ color:var(--gold); font-weight:800; }
 
   .media{ border-radius:16px; overflow:hidden; box-shadow:var(--shadow-1); }
@@ -237,7 +249,7 @@
   }
   .hours .h-top{ display:flex; align-items:center; gap:10px 12px; margin-bottom:14px; }
   .hours .h-top i{ width:20px; height:20px; color:var(--blue); flex:none; }
-  .hours .h-top span{ font-family:'Sora',sans-serif; font-weight:600; font-size:15px; letter-spacing:.02em; color:var(--ink); min-width:0; }
+  .hours .h-top > span{ font-family:'Sora',sans-serif; font-weight:600; font-size:15px; letter-spacing:.02em; color:var(--ink); min-width:0; }
   .hours .h-top em{ font-style:normal; margin-left:auto; font-size:12px; font-weight:700; color:#0f7a3d;
     background:#e3f6ea; border:1px solid #bfe8cc; padding:4px 10px; border-radius:999px; }
   .hours .row{ display:flex; justify-content:space-between; align-items:baseline; padding:9px 0; border-top:1px dashed var(--tint-line); }
@@ -347,9 +359,10 @@
   @media (max-width:600px){ .cookie-bar button{ flex:1 1 auto; min-width:0; } }
 
   @media (max-width:760px){
-    .grid, .contact-grid{ grid-template-columns:1fr; gap:22px; padding:22px 22px 30px; }
+    .grid, .contact-grid{ grid-template-columns:1fr; gap:22px; padding:22px 22px 24px; }
     .card-head{ padding:24px 22px 0; flex-wrap:wrap; }
     .media{ order:-1; }
+    .features{ padding:14px 22px 22px; }
   }
 </style>
 </head>
@@ -405,16 +418,16 @@
           </div>
           <p>Das Asien-Haus bietet in zwei Häusern auf über 200&nbsp;qm ein riesiges Sortiment asiatischer Lebensmittel. Damit sind wir <b>der</b> kompetente Partner für jeden (Hobby-)Koch.</p>
           <p>Neben Lebensmitteln aus fast allen Ländern Asiens führen wir auch frisches Gemüse, frische Kräuter und ein großes Sortiment asiatischer Bio-Produkte. Sie finden uns in der Tübinger Altstadt in der Schmiedtorstraße – direkt gegenüber der Fruchtschranne zwischen der Krummen Brücke und dem Parkhaus König.</p>
-          <div class="features">
-            <span class="chip"><i data-lucide="sprout"></i> Frische Kräuter: Thai-Basilikum, Koriander</span>
-            <span class="chip"><i data-lucide="leaf"></i> Fokus <b>Bio</b></span>
-            <span class="chip"><i data-lucide="globe"></i> Süd-amerikanische Lebensmittel</span>
-            <span class="chip"><i data-lucide="carrot"></i> Frisches Gemüse</span>
-          </div>
         </div>
         <div class="media">
           <img src="assets/storefront.jpeg" alt="Asien-Haus Laden in der Schmiedtorstraße, Tübingen" />
         </div>
+      </div>
+      <div class="features">
+        <span class="chip"><i data-lucide="sprout"></i> Frische Kräuter: Thai-Basilikum, Koriander</span>
+        <span class="chip"><i data-lucide="leaf"></i> Fokus <b>Bio</b></span>
+        <span class="chip"><i data-lucide="globe"></i> Süd-amerikanische Lebensmittel</span>
+        <span class="chip"><i data-lucide="carrot"></i> Frisches Gemüse</span>
       </div>
     </section>
 
@@ -444,13 +457,13 @@
             </a>
           </div>
           <p>Im Imbissbereich verwöhnen wir Sie mit thailändischen Köstlichkeiten. Schauen Sie sich einfach unsere täglich wechselnde Speisekarte an – alle Gerichte gibt es auch problemlos zum Mitnehmen.</p>
-          <div class="features">
-            <span class="chip"><i data-lucide="flame"></i> Nudelsuppe – unser <b>Fokus</b></span>
-            <span class="chip"><i data-lucide="calendar"></i> Täglich wechselnde Tageskarte</span>
-            <span class="chip"><i data-lucide="utensils"></i> Durchgehend warme Küche</span>
-            <span class="chip"><i data-lucide="shopping-bag"></i> Alles auch zum Mitnehmen</span>
-          </div>
         </div>
+      </div>
+      <div class="features">
+        <span class="chip"><i data-lucide="flame"></i> Nudelsuppe – unser <b>Fokus</b></span>
+        <span class="chip"><i data-lucide="calendar"></i> Täglich wechselnde Tageskarte</span>
+        <span class="chip"><i data-lucide="utensils"></i> Durchgehend warme Küche</span>
+        <span class="chip"><i data-lucide="shopping-bag"></i> Alles auch zum Mitnehmen</span>
       </div>
     </section>
 
@@ -553,8 +566,7 @@
   }
   document.querySelectorAll('main .card').forEach(card=>{
     card.insertAdjacentHTML('afterbegin',
-      `<div class="deco-cluster tr" style="transform:rotate(20deg)">${cluster()}</div>`
-      + `<div class="deco-cluster bl" style="transform:rotate(-8deg)">${cluster()}</div>`);
+      `<div class="deco-cluster tr" style="transform:rotate(20deg)">${cluster()}</div>`);
   });
 
   /* ============ Einwilligung für externe Inhalte (Instagram, Karte) ============ */
