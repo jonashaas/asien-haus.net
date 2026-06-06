@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Asien-Haus · Tübingen</title>
+<link rel="icon" href="assets/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+  @font-face{
+    font-family:'Rickshaw';
+    src:url('assets/Rickshaw.woff2') format('woff2'),
+        url('assets/Rickshaw.woff') format('woff'),
+        url('assets/Rickshaw.ttf') format('truetype');
+    font-weight:normal; font-style:normal; font-display:swap;
+  }
+  :root{
+    --awn:        #0c5fb0;   /* awning cobalt */
+    --awn-deep:   #0a4e91;   /* awning shadow / cassette */
+    --awn-bright: #2e80cf;   /* sheen */
+    --navy:       #07294a;   /* page base */
+    --navy-2:     #0b3a68;   /* page gradient */
+    --blue:       #0c62b8;   /* accent */
+    --blue-2:     #1573d4;
+    --tint:       #e9f2fc;   /* light blue panel */
+    --tint-line:  #cfe2f7;
+    --gold:       #d6a94e;
+    --gold-soft:  #eac86e;
+    --ink:        #14283c;
+    --ink-2:      #4a6076;
+    --ink-3:      #7388a0;
+    --card:       #ffffff;
+    --radius:     22px;
+    --shadow-1:   0 1px 2px rgba(7,30,55,.18), 0 8px 24px -10px rgba(7,30,55,.35);
+    --shadow-2:   0 2px 6px rgba(7,30,55,.20), 0 22px 50px -18px rgba(7,30,55,.55);
+  }
+
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; }
+  body{
+    font-family:'Inter',system-ui,sans-serif;
+    color:var(--ink);
+    background:
+      radial-gradient(1100px 600px at 80% -5%, rgba(46,128,207,.35), transparent 60%),
+      linear-gradient(180deg, var(--navy-2) 0%, var(--navy) 100%);
+    background-attachment:fixed;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{ max-width:1080px; margin:0 auto; padding:0 24px; }
+
+  /* ============ AWNING / MARQUISE HEADER ============ */
+  header{ position:relative; }
+  .awning{
+    position:relative;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,.16), rgba(255,255,255,0) 22%),
+      linear-gradient(180deg, var(--awn-bright) 0%, var(--awn) 38%, var(--awn-deep) 100%);
+    padding:26px 24px 20px;
+    box-shadow:inset 0 -18px 30px -18px rgba(0,0,0,.5);
+  }
+  /* faint vertical fabric seams */
+  .awning::before{
+    content:""; position:absolute; inset:0;
+    background-image:repeating-linear-gradient(90deg, rgba(255,255,255,.05) 0 1px, transparent 1px 86px);
+    pointer-events:none;
+  }
+  .awning .brand{
+    position:relative; z-index:2;
+    display:flex; flex-direction:column; align-items:center; gap:10px;
+    max-width:1080px; margin:0 auto;
+  }
+  .brand img{ width:min(420px,68vw); height:auto; display:block;
+    filter:drop-shadow(0 2px 1px rgba(0,0,0,.35)); }
+  .brand .wordmark{
+    font-family:'Rickshaw','Sora',sans-serif; font-weight:400; letter-spacing:.01em;
+    font-size:clamp(46px,8vw,88px); line-height:1; color:var(--gold-soft);
+    text-shadow:0 2px 0 rgba(0,0,0,.18), 0 5px 14px rgba(0,0,0,.28);
+  }
+  .brand .sub{
+    color:rgba(255,255,255,.92); font-size:13px; letter-spacing:.34em;
+    text-transform:uppercase; font-weight:600; text-align:center;
+  }
+  /* white binding line just above the scallops */
+  .piping{ height:5px; background:#f3f7fb; box-shadow:0 1px 3px rgba(0,0,0,.25); position:relative; z-index:2; }
+  /* scalloped valance from the sketch */
+  .valance{
+    height:34px;
+    background:radial-gradient(circle at 50% 0%, var(--awn) 0 59%, transparent 61%);
+    background-size:58px 58px;
+    background-position:center top;
+    background-repeat:repeat-x;
+    filter:drop-shadow(0 5px 6px rgba(0,0,0,.28));
+  }
+
+  /* ============ INTRO ============ */
+  .intro{ text-align:center; color:#eaf3fc; padding:38px 24px 4px; }
+  .intro h1{
+    font-family:'Sora',sans-serif; font-weight:700; letter-spacing:-.02em;
+    font-size:clamp(26px,4.4vw,40px); margin:0 0 14px; line-height:1.12;
+  }
+  .intro h1 b{ color:var(--gold-soft); font-weight:800; }
+  .intro p{ margin:0 auto; max-width:640px; color:#bcd2e8; font-size:17px; line-height:1.7; }
+  .quicklinks{ display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:26px; }
+  .quicklinks a{
+    display:inline-flex; align-items:center; gap:8px;
+    background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18);
+    color:#eaf3fc; text-decoration:none; font-weight:600; font-size:14px;
+    padding:11px 18px; border-radius:999px; backdrop-filter:blur(6px);
+    transition:background .25s, border-color .25s, transform .25s;
+  }
+  .quicklinks a:hover{ background:rgba(46,128,207,.35); border-color:var(--awn-bright); transform:translateY(-2px); }
+  .quicklinks a i{ width:17px; height:17px; }
+
+  /* ============ SECTIONS / MATERIAL CARDS ============ */
+  main{ padding:40px 0 24px; }
+
+  /* ---------- playful corner motif (Option B) ---------- */
+  /* faint tint shapes inside each white card, clipped by the card's
+     rounded corners (top-right + bottom-left). */
+  .card > .deco-cluster{ position:absolute; pointer-events:none; z-index:0; }
+  .card > .deco-cluster.tr{ top:-46px; right:-46px; left:auto; }
+  .card > .deco-cluster.bl{ bottom:-46px; left:-46px; top:auto; }
+  .card > .deco-cluster b{ background:rgba(12,98,184,.055); }
+  .card > .deco-cluster b.g{ background:rgba(214,169,78,.07); }
+  .deco-cluster{ position:relative; width:260px; height:260px; }
+  .deco-cluster b{ position:absolute; display:block; }
+  /* keep card content above the motif */
+  .card-head, .grid, .contact-grid, .insta-body{ position:relative; z-index:1; }
+
+  @media (max-width:760px){
+    .card > .deco-cluster.bl{ display:none; }                     /* keep just one, lighter */
+    .card > .deco-cluster.tr{ transform:scale(.7); transform-origin:top right; }
+  }
+  .card{
+    background:var(--card); border-radius:var(--radius);
+    box-shadow:var(--shadow-2); margin:30px 0; overflow:hidden;
+    position:relative;
+  }
+  .card-head{
+    display:flex; align-items:center; gap:16px;
+    padding:30px 36px 0;
+  }
+  .badge{
+    width:54px; height:54px; flex:none; border-radius:16px;
+    display:grid; place-items:center; color:#fff;
+    background:linear-gradient(150deg,var(--blue-2),var(--blue));
+    box-shadow:0 8px 18px -6px rgba(12,98,184,.7);
+  }
+  .badge i{ width:28px; height:28px; }
+  .card-head .titles{ display:flex; flex-direction:column; gap:3px; }
+
+  /* live open/closed status pill */
+  .status{
+    margin-left:auto; align-self:center; flex:none;
+    display:inline-flex; align-items:center; gap:9px;
+    padding:9px 16px 9px 14px; border-radius:999px;
+    font-family:'Sora',sans-serif; font-weight:600; font-size:14px; letter-spacing:.01em;
+    border:1px solid transparent; white-space:nowrap;
+  }
+  .status .dot{ width:9px; height:9px; border-radius:50%; position:relative; flex:none; }
+  .status .dot::after{ content:""; position:absolute; inset:-4px; border-radius:50%; opacity:.5; }
+  .status .txt{ display:flex; flex-direction:column; line-height:1.15; }
+  .status .txt small{ font-family:'Inter',sans-serif; font-weight:500; font-size:11px; opacity:.72; letter-spacing:0; }
+  .status.open{ background:#e3f6ea; border-color:#bfe8cc; color:#0f7a3d; }
+  .status.open .dot{ background:#1aa64b; box-shadow:0 0 0 0 rgba(26,166,75,.6); animation:pulse 2.4s infinite; }
+  .status.closed{ background:#fdeaea; border-color:#f4cccc; color:#c0392b; }
+  .status.closed .dot{ background:#d0463a; }
+  @keyframes pulse{ 0%{ box-shadow:0 0 0 0 rgba(26,166,75,.55);} 70%{ box-shadow:0 0 0 7px rgba(26,166,75,0);} 100%{ box-shadow:0 0 0 0 rgba(26,166,75,0);} }
+  @media (max-width:760px){ .status .txt small{ display:none; } .status{ padding:8px 13px; } }
+
+  /* compact variant when the badge sits in the hours-panel header */
+  .hours .h-top .status{ padding:5px 11px 5px 9px; font-size:12.5px; gap:7px; border-radius:999px; }
+  .hours .h-top .status .dot{ width:7px; height:7px; }
+  .hours .h-top .status .txt small{ display:none; }
+  .eyebrow{ font-size:12px; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:var(--blue); }
+  .card-head h2{
+    font-family:'Sora',sans-serif; font-weight:700; letter-spacing:-.02em;
+    font-size:clamp(28px,3.4vw,38px); margin:0; color:var(--ink);
+  }
+  .grid{ display:grid; grid-template-columns:1.15fr .85fr; gap:30px; padding:24px 36px 36px; align-items:start; }
+  .prose p{ font-size:16px; line-height:1.78; color:var(--ink-2); margin:0 0 16px; }
+  .prose p:last-child{ margin-bottom:0; }
+
+  .features{ display:flex; flex-wrap:wrap; gap:10px; margin:20px 0 4px; }
+  .chip{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--tint); border:1px solid var(--tint-line);
+    color:#0f4d8c; font-weight:600; font-size:13.5px;
+    padding:9px 14px; border-radius:999px;
+  }
+  .chip i{ width:16px; height:16px; color:var(--blue); }
+  .chip b{ color:var(--gold); font-weight:800; }
+
+  .media{ border-radius:16px; overflow:hidden; box-shadow:var(--shadow-1); }
+  .media img{ display:block; width:100%; height:420px; object-fit:cover; }
+
+  /* opening-times panel */
+  .hours{
+    margin:2px 0 24px; background:var(--tint); border:1px solid var(--tint-line);
+    border-radius:16px; padding:20px 22px;
+  }
+  .hours .h-top{ display:flex; align-items:center; gap:10px; margin-bottom:14px; }
+  .hours .h-top i{ width:20px; height:20px; color:var(--blue); }
+  .hours .h-top span{ font-family:'Sora',sans-serif; font-weight:600; font-size:15px; letter-spacing:.02em; color:var(--ink); }
+  .hours .h-top em{ font-style:normal; margin-left:auto; font-size:12px; font-weight:700; color:#0f7a3d;
+    background:#e3f6ea; border:1px solid #bfe8cc; padding:4px 10px; border-radius:999px; }
+  .hours .row{ display:flex; justify-content:space-between; align-items:baseline; padding:9px 0; border-top:1px dashed var(--tint-line); }
+  .hours .row:first-of-type{ border-top:none; }
+  .hours .row .d{ color:var(--ink-2); font-weight:600; font-size:14.5px; }
+  .hours .row .t{ font-family:'Sora',sans-serif; font-weight:600; color:var(--ink); font-size:15px; }
+  .hours .note{ margin:12px 0 0; font-size:13px; color:var(--ink-3); display:flex; align-items:center; gap:7px; }
+  .hours .note i{ width:15px; height:15px; }
+
+  .phone-line{
+    display:inline-flex; align-items:center; gap:10px; margin-top:18px;
+    color:var(--blue); font-weight:700; text-decoration:none; font-size:17px;
+    font-family:'Sora',sans-serif;
+  }
+  .phone-line i{ width:19px; height:19px; }
+
+  /* call badge — lives at the bottom of each hours panel */
+  .call-badge{ display:flex; align-items:center; gap:13px; margin-top:16px;
+    background:#fff; border:1px solid var(--tint-line); border-radius:14px;
+    padding:12px 15px; min-height:58px; text-decoration:none;
+    transition:border-color .25s, box-shadow .25s, transform .2s; }
+  .call-badge:hover{ border-color:var(--blue); box-shadow:0 10px 20px -10px rgba(12,98,184,.55); transform:translateY(-1px); }
+  .call-badge:active{ transform:translateY(0); }
+  .call-badge .cb-ic{ width:40px; height:40px; flex:none; border-radius:11px; display:grid; place-items:center;
+    color:#fff; background:linear-gradient(150deg,var(--blue-2),var(--blue));
+    box-shadow:0 6px 14px -5px rgba(12,98,184,.7); }
+  .call-badge .cb-ic i{ width:20px; height:20px; }
+  .call-badge .cb-txt{ display:flex; flex-direction:column; line-height:1.22; min-width:0; }
+  .call-badge .cb-txt small{ font-size:11.5px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3); }
+  .call-badge .cb-txt strong{ font-family:'Sora',sans-serif; font-size:18px; font-weight:600; color:var(--ink); letter-spacing:.01em; }
+  .call-badge .cb-go{ margin-left:auto; width:20px; height:20px; color:var(--blue); flex:none; }
+
+  /* ============ INSTAGRAM ============ */
+  .insta-body{ padding:8px 28px 32px; }
+  .insta-body .sk-instagram-feed{ min-height:120px; }
+
+  /* ============ KONTAKT / ANFAHRT ============ */
+  .contact-grid{ display:grid; grid-template-columns:1fr 1fr; gap:30px; padding:24px 36px 36px; }
+  .info-list{ display:flex; flex-direction:column; gap:18px; }
+  .info-item{ display:flex; gap:14px; align-items:flex-start; }
+  .info-item .ic{ width:40px; height:40px; flex:none; border-radius:11px; display:grid; place-items:center;
+    background:var(--tint); color:var(--blue); }
+  .info-item .ic i{ width:20px; height:20px; }
+  .info-item .lbl{ font-size:12px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3); margin-bottom:3px; }
+  .info-item .val{ font-size:16px; line-height:1.55; color:var(--ink); font-weight:500; }
+  .info-item .val a{ color:var(--blue); text-decoration:none; font-weight:600; }
+  .map{
+    border-radius:16px; overflow:hidden; box-shadow:var(--shadow-1); min-height:300px;
+    background:linear-gradient(180deg,#dce8f4,#cdddee);
+    display:grid; place-items:center; text-align:center; color:#5b7795; position:relative;
+  }
+  .map iframe{ width:100%; height:100%; min-height:300px; border:0; display:block; }
+  .map-consent{ position:absolute; inset:0; display:flex; flex-direction:column;
+    align-items:center; justify-content:center; gap:12px; text-align:center; padding:28px; }
+  .map-consent > i{ width:34px; height:34px; color:var(--blue); }
+  .map-consent p{ margin:0; max-width:280px; font-size:13.5px; line-height:1.6; color:var(--ink-2); }
+  .map-consent p b{ color:var(--ink); }
+  .map-consent button{ font-family:'Inter',sans-serif; font-weight:700; font-size:14px;
+    color:#fff; background:linear-gradient(150deg,var(--blue-2),var(--blue)); border:0;
+    padding:11px 22px; border-radius:999px; cursor:pointer;
+    box-shadow:0 8px 18px -6px rgba(12,98,184,.7); transition:transform .2s, box-shadow .2s; }
+  .map-consent button:hover{ transform:translateY(-2px); box-shadow:0 12px 22px -6px rgba(12,98,184,.8); }
+  .map-consent a{ font-size:12.5px; font-weight:600; color:var(--blue); text-decoration:none; }
+
+  /* ============ FOOTER ============ */
+  footer{ text-align:center; color:#9fb9d6; padding:30px 24px 54px; font-size:13.5px; line-height:1.9; }
+  footer .fb{ color:var(--gold-soft); font-weight:700; }
+  footer a{ color:#cfe0f4; text-decoration:none; }
+  footer a:hover{ text-decoration:underline; }
+  footer .copyright{ margin-top:6px; color:#7e98b8; font-size:12.5px; }
+
+  @media (max-width:760px){
+    .grid, .contact-grid{ grid-template-columns:1fr; gap:22px; padding:22px 22px 30px; }
+    .card-head{ padding:24px 22px 0; }
+    .media{ order:-1; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- ===================== AWNING HEADER ===================== -->
+  <header data-screen-label="Header / Markise">
+    <div class="awning">
+      <div class="brand">
+        <div class="wordmark">Asien-Haus</div>
+        <div class="sub">Feinkost · Imbiss · Tübinger Altstadt</div>
+      </div>
+    </div>
+    <div class="piping"></div>
+    <div class="valance"></div>
+  </header>
+
+  <!-- ===================== INTRO ===================== -->
+  <section class="intro wrap">
+    <h1>Asiatische Lebensmittel &amp; Thai-Imbiss <br /><b>mitten in der Tübinger Altstadt</b></h1>
+    <p>Auf über 200&nbsp;qm in zwei Häusern führen wir ein riesiges Sortiment aus fast allen Ländern Asiens – mit Fokus auf Bio, frischem Gemüse und frischen Kräutern. Nebenan verwöhnt Sie unser Imbiss mit thailändischen Köstlichkeiten.</p>
+    <div class="quicklinks">
+      <a href="#laden"><i data-lucide="store"></i> Laden</a>
+      <a href="#imbiss"><i data-lucide="soup"></i> Imbiss</a>
+      <a href="#instagram"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg> Instagram</a>
+      <a href="#kontakt"><i data-lucide="map-pin"></i> Anfahrt &amp; Kontakt</a>
+    </div>
+  </section>
+
+  <main class="wrap">
+
+    <!-- ===================== LADEN ===================== -->
+    <section class="card" id="laden" data-screen-label="Laden">
+      <div class="card-head">
+        <div class="badge"><i data-lucide="store"></i></div>
+        <div class="titles">
+          <span class="eyebrow">Feinkost · 200&nbsp;qm</span>
+          <h2>Laden</h2>
+        </div>
+      </div>
+      <div class="grid">
+        <div class="prose">
+          <div class="hours">
+            <div class="h-top"><i data-lucide="clock"></i><span>Öffnungszeiten Laden</span><div class="status" data-hours="laden"></div></div>
+            <div class="row"><span class="d">Montag – Freitag</span><span class="t">10:00 – 19:00</span></div>
+            <div class="row"><span class="d">Samstag</span><span class="t">10:00 – 15:00</span></div>
+            <div class="row"><span class="d">Sonntag</span><span class="t">geschlossen</span></div>
+            <a class="call-badge" href="tel:+497071552088">
+              <span class="cb-ic"><i data-lucide="phone"></i></span>
+              <span class="cb-txt"><small>Anruf · Laden</small><strong>07071 552088</strong></span>
+              <i data-lucide="chevron-right" class="cb-go"></i>
+            </a>
+          </div>
+          <p>Das Asien-Haus bietet in zwei Häusern auf über 200&nbsp;qm ein riesiges Sortiment asiatischer Lebensmittel. Damit sind wir <b>der</b> kompetente Partner für jeden (Hobby-)Koch.</p>
+          <p>Neben Lebensmitteln aus fast allen Ländern Asiens führen wir auch frisches Gemüse, frische Kräuter und ein großes Sortiment asiatischer Bio-Produkte. Sie finden uns in der Tübinger Altstadt in der Schmiedtorstraße – direkt gegenüber der Fruchtschranne zwischen der Krummen Brücke und dem Parkhaus König.</p>
+          <div class="features">
+            <span class="chip"><i data-lucide="sprout"></i> Frische Kräuter: Thai-Basilikum, Koriander</span>
+            <span class="chip"><i data-lucide="leaf"></i> Fokus <b>Bio</b></span>
+            <span class="chip"><i data-lucide="globe"></i> Süd-amerikanische Lebensmittel</span>
+            <span class="chip"><i data-lucide="carrot"></i> Frisches Gemüse</span>
+          </div>
+        </div>
+        <div class="media">
+          <img src="assets/storefront.jpeg" alt="Asien-Haus Laden in der Schmiedtorstraße, Tübingen" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== IMBISS ===================== -->
+    <section class="card" id="imbiss" data-screen-label="Imbiss">
+      <div class="card-head">
+        <div class="badge"><i data-lucide="soup"></i></div>
+        <div class="titles">
+          <span class="eyebrow">Thailändische Küche</span>
+          <h2>Imbiss</h2>
+        </div>
+      </div>
+      <div class="grid">
+        <div class="media">
+          <img src="assets/imbiss.jpeg" alt="Thailändische Gerichte aus dem Imbiss" />
+        </div>
+        <div class="prose">
+          <div class="hours">
+            <div class="h-top"><i data-lucide="clock"></i><span>Öffnungszeiten Imbiss</span><div class="status" data-hours="imbiss"></div></div>
+            <div class="row"><span class="d">Montag – Freitag</span><span class="t">11:30 – 15:00</span></div>
+            <div class="row"><span class="d">Samstag &amp; Sonntag</span><span class="t">geschlossen</span></div>
+            <p class="note"><i data-lucide="info"></i> Durchgehend warme Küche – ideal auch für den schnellen Mittagstisch.</p>
+            <a class="call-badge" href="tel:+497071552086">
+              <span class="cb-ic"><i data-lucide="phone"></i></span>
+              <span class="cb-txt"><small>Anruf · Imbiss</small><strong>07071 552086</strong></span>
+              <i data-lucide="chevron-right" class="cb-go"></i>
+            </a>
+          </div>
+          <p>Im Imbissbereich verwöhnen wir Sie mit thailändischen Köstlichkeiten. Schauen Sie sich einfach unsere täglich wechselnde Speisekarte an – alle Gerichte gibt es auch problemlos zum Mitnehmen.</p>
+          <div class="features">
+            <span class="chip"><i data-lucide="flame"></i> Nudelsuppe – unser <b>Fokus</b></span>
+            <span class="chip"><i data-lucide="calendar"></i> Täglich wechselnde Tageskarte</span>
+            <span class="chip"><i data-lucide="utensils"></i> Durchgehend warme Küche</span>
+            <span class="chip"><i data-lucide="shopping-bag"></i> Alles auch zum Mitnehmen</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== INSTAGRAM ===================== -->
+    <section class="card" id="instagram" data-screen-label="Instagram">
+      <div class="card-head">
+        <div class="badge"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></div>
+        <div class="titles">
+          <span class="eyebrow">Aktuelles</span>
+          <h2>Instagram</h2>
+        </div>
+      </div>
+      <div class="insta-body">
+        <div class="sk-instagram-feed" data-embed-id="25687495"></div>
+        <script src="https://widgets.sociablekit.com/instagram-feed/widget.js" defer></script>
+      </div>
+    </section>
+
+    <!-- ===================== KONTAKT / ANFAHRT ===================== -->
+    <section class="card" id="kontakt" data-screen-label="Anfahrt &amp; Kontakt">
+      <div class="card-head">
+        <div class="badge"><i data-lucide="map-pin"></i></div>
+        <div class="titles">
+          <span class="eyebrow">So finden Sie uns</span>
+          <h2>Anfahrt &amp; Kontakt</h2>
+        </div>
+      </div>
+      <div class="contact-grid">
+        <div class="info-list">
+          <div class="info-item">
+            <div class="ic"><i data-lucide="map-pin"></i></div>
+            <div><div class="lbl">Anschrift</div>
+              <div class="val">Asien-Haus<br />Schmiedtorstraße 7 und 11<br />72070 Tübingen</div></div>
+          </div>
+          <div class="info-item">
+            <div class="ic"><i data-lucide="navigation"></i></div>
+            <div><div class="lbl">Lage</div>
+              <div class="val">In der Tübinger Unterstadt, nähe Parkhaus König – direkt gegenüber dem Bürgeramt / der Fruchtschranne, zwischen Krummer Brücke und Parkhaus König.</div></div>
+          </div>
+          <div class="info-item">
+            <div class="ic"><i data-lucide="phone"></i></div>
+            <div><div class="lbl">Telefon</div>
+              <div class="val">
+                Feinkost: <a href="tel:+497071552088">07071 – 552088</a><br />
+                Imbiss: <a href="tel:+497071552086">07071 – 552086</a><br />
+                Fax: 07071 – 552087
+              </div></div>
+          </div>
+          <div class="info-item">
+            <div class="ic"><i data-lucide="user"></i></div>
+            <div><div class="lbl">Inhaber</div>
+              <div class="val">Johannes Hegedüs</div></div>
+          </div>
+        </div>
+        <div class="map" id="map">
+          <div class="map-consent" id="mapConsent">
+            <i data-lucide="map-pin"></i>
+            <p>Die Karte lädt Inhalte von <b>OpenStreetMap</b>. Dabei wird Ihre IP-Adresse an OpenStreetMap übertragen.</p>
+            <button type="button" id="mapBtn">Karte laden</button>
+            <a href="https://www.openstreetmap.org/?mlat=48.522079&amp;mlon=9.052032#map=18/48.522079/9.052032" target="_blank" rel="noopener">In OpenStreetMap öffnen ↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="fb">Asien-Haus</div>
+    Schmiedtorstraße 7 und 11 · 72070 Tübingen · Inhaber: Johannes Hegedüs
+    <div class="copyright">© <span id="year">2026</span> Asien-Haus · Alle Rechte vorbehalten</div>
+  </footer>
+
+<script>
+  lucide.createIcons();
+
+  /* keep footer copyright year current */
+  (function(){ var y=document.getElementById('year'); if(y) y.textContent=new Date().getFullYear(); })();
+
+  /* ---- playful corner motif (Option B): build clusters inside each card ---- */
+  function cluster(){
+    const sq = (s,r,t,l,g)=>`<b class="${g?'g':''}" style="width:${s}px;height:${s}px;border-radius:${r}px;top:${t}px;left:${l}px"></b>`;
+    const ci = (s,t,l,g)=>`<b class="${g?'g':''}" style="width:${s}px;height:${s}px;border-radius:50%;top:${t}px;left:${l}px"></b>`;
+    return sq(120,40,28,70,false) + ci(82,150,12,true)
+      + sq(60,22,0,8,false) + ci(46,168,150,false) + sq(40,15,96,168,true);
+  }
+  document.querySelectorAll('main .card').forEach(card=>{
+    card.insertAdjacentHTML('afterbegin',
+      `<div class="deco-cluster tr" style="transform:rotate(20deg)">${cluster()}</div>`
+      + `<div class="deco-cluster bl" style="transform:rotate(-8deg)">${cluster()}</div>`);
+  });
+
+  /* ---- DSGVO-friendly map: load OpenStreetMap only on click ---- */
+  document.getElementById('mapBtn').addEventListener('click', function(){
+    var map = document.getElementById('map');
+    var f = document.createElement('iframe');
+    f.loading = 'lazy';
+    f.title = 'Karte Asien-Haus Tübingen, Schmiedtorstraße 11';
+    f.src = 'https://www.openstreetmap.org/export/embed.html?bbox=9.0480%2C48.5203%2C9.0561%2C48.5239&layer=mapnik&marker=48.522079%2C9.052032';
+    var c = document.getElementById('mapConsent');
+    if (c) c.remove();
+    map.appendChild(f);
+  });
+
+  /* ---- live open/closed status, computed in Europe/Berlin time ---- */
+  // schedule[dayIndex] = array of [openMinutes, closeMinutes]; day 0 = Sunday
+  const SCHEDULES = {
+    laden: {
+      label: 'Laden',
+      days: {
+        0: [],                       // So geschlossen
+        1: [[600, 1140]], 2: [[600, 1140]], 3: [[600, 1140]],
+        4: [[600, 1140]], 5: [[600, 1140]],   // Mo–Fr 10:00–19:00
+        6: [[600, 900]]              // Sa 10:00–15:00
+      }
+    },
+    imbiss: {
+      label: 'Imbiss',
+      days: {
+        0: [[690, 900]],             // täglich 11:30–15:00
+        1: [[690, 900]], 2: [[690, 900]], 3: [[690, 900]],
+        4: [[690, 900]], 5: [[690, 900]],
+        6: [[690, 900]]
+      }
+    }
+  };
+  const DAY_NAMES = ['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'];
+  const fmt = m => String(Math.floor(m/60)).padStart(2,'0') + ':' + String(m%60).padStart(2,'0');
+
+  function berlinNow(){
+    const parts = new Intl.DateTimeFormat('en-US', {
+      timeZone:'Europe/Berlin', weekday:'short', hour:'2-digit', minute:'2-digit', hour12:false
+    }).formatToParts(new Date());
+    const wd = parts.find(p=>p.type==='weekday').value;
+    const hour = +parts.find(p=>p.type==='hour').value % 24;
+    const minute = +parts.find(p=>p.type==='minute').value;
+    const dayMap = {Sun:0,Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6};
+    return { day: dayMap[wd], minutes: hour*60 + minute };
+  }
+
+  function evaluate(sched){
+    const { day, minutes } = berlinNow();
+    const today = sched.days[day] || [];
+    for (const [o,c] of today){
+      if (minutes >= o && minutes < c){
+        return { open:true, until:c };
+      }
+    }
+    // not open now → find next opening, scanning up to 7 days ahead
+    for (let i=0;i<8;i++){
+      const d = (day+i)%7;
+      const slots = sched.days[d] || [];
+      for (const [o,c] of slots){
+        if (i===0 && o<=minutes) continue;   // already past today
+        return { open:false, nextDay:d, nextOpen:o, soonToday:i===0 };
+      }
+    }
+    return { open:false };
+  }
+
+  function renderStatus(el){
+    const sched = SCHEDULES[el.dataset.hours];
+    if (!sched) return;
+    const r = evaluate(sched);
+    if (r.open){
+      el.className = 'status open';
+      el.innerHTML = '<span class="dot"></span><span class="txt">Geöffnet'
+        + '<small>bis ' + fmt(r.until) + ' Uhr</small></span>';
+    } else {
+      el.className = 'status closed';
+      let sub = '';
+      if (r.nextOpen != null){
+        const when = r.soonToday ? 'heute' : ('ab ' + DAY_NAMES[r.nextDay]);
+        sub = '<small>öffnet ' + when + ' ' + fmt(r.nextOpen) + ' Uhr</small>';
+      }
+      el.innerHTML = '<span class="dot"></span><span class="txt">Geschlossen' + sub + '</span>';
+    }
+  }
+
+  function refreshStatus(){ document.querySelectorAll('.status[data-hours]').forEach(renderStatus); }
+  refreshStatus();
+  setInterval(refreshStatus, 30000);   // keep fresh as time passes
+</script>
+</body>
+</html>
