@@ -198,6 +198,9 @@
     font-size:clamp(28px,3.4vw,38px); margin:0; color:var(--ink);
   }
   .grid{ display:grid; grid-template-columns:1.15fr .85fr; gap:30px; padding:24px 36px 36px; align-items:start; }
+  /* allow grid/flex children to shrink below their min-content width so that
+     long words / nowrap pills don't blow the column past the card edge */
+  .grid > *, .contact-grid > *{ min-width:0; }
   /* Laden has text left / image right, so flip the columns to keep the same
      big-image / small-text ratio as the Imbiss section (desktop only) */
   @media (min-width:761px){ #laden .grid{ grid-template-columns:.85fr 1.15fr; } }
@@ -309,6 +312,28 @@
   footer .copyright{ margin-top:6px; color:#7e98b8; font-size:12.5px; }
   footer .legal{ margin-top:8px; font-size:12.5px; }
   footer .legal a{ color:#bcd2e8; font-weight:600; }
+  footer .legal button{ background:none; border:0; color:#bcd2e8; font-weight:600; font-size:12.5px;
+    font-family:'Inter',sans-serif; cursor:pointer; padding:0; }
+  footer .legal button:hover{ text-decoration:underline; }
+
+  /* ============ CONSENT BANNER ============ */
+  .cookie-bar{ position:fixed; left:0; right:0; bottom:0; z-index:60;
+    background:#07294a; color:#eaf3fc; border-top:1px solid rgba(255,255,255,.14);
+    box-shadow:0 -12px 30px -14px rgba(0,0,0,.6);
+    padding:16px 22px; display:flex; gap:18px 22px; align-items:center; justify-content:center; flex-wrap:wrap; }
+  .cookie-bar p{ margin:0; max-width:640px; font-size:13.5px; line-height:1.6; color:#cfe0f4; }
+  .cookie-bar p a{ color:#eac86e; text-decoration:none; font-weight:600; }
+  .cookie-bar p a:hover{ text-decoration:underline; }
+  /* both buttons equally prominent (VG Hannover, 19.03.2025 – 10 A 5385/22) */
+  .cookie-bar .cb-actions{ display:flex; gap:10px; flex-wrap:wrap; }
+  .cookie-bar button{ font-family:'Inter',sans-serif; font-weight:700; font-size:14px;
+    padding:11px 22px; border-radius:999px; cursor:pointer; border:1px solid transparent;
+    min-width:160px; transition:transform .2s, box-shadow .2s; }
+  .cookie-bar button:hover{ transform:translateY(-1px); }
+  .cookie-bar .reject{ color:#eaf3fc; background:rgba(255,255,255,.14); border-color:rgba(255,255,255,.22); }
+  .cookie-bar .accept{ color:#fff; background:linear-gradient(150deg,var(--blue-2),var(--blue));
+    box-shadow:0 8px 18px -6px rgba(12,98,184,.7); }
+  @media (max-width:600px){ .cookie-bar button{ flex:1 1 auto; min-width:0; } }
 
   @media (max-width:760px){
     .grid, .contact-grid{ grid-template-columns:1fr; gap:22px; padding:22px 22px 30px; }
@@ -490,8 +515,17 @@
     <div class="fb">Asien-Haus</div>
     Schmiedtorstraße 7 und 11 · 72070 Tübingen · Inhaber: Johannes Hegedüs
     <div class="copyright">© <span id="year">2026</span> Asien-Haus · Alle Rechte vorbehalten</div>
-    <div class="legal"><a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a></div>
+    <div class="legal"><a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a> · <button type="button" id="cookieSettings">Cookie-Einstellungen</button></div>
   </footer>
+
+  <!-- ===================== CONSENT BANNER ===================== -->
+  <div class="cookie-bar" id="cookieBar" hidden>
+    <p>Wir laden externe Inhalte (Instagram-Feed und Karte) nur mit Ihrer Einwilligung. Dabei können Daten an Dritte übertragen werden. Mehr dazu in der <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
+    <div class="cb-actions">
+      <button type="button" class="reject" id="cookieReject">Nur notwendige</button>
+      <button type="button" class="accept" id="cookieAccept">Alle akzeptieren</button>
+    </div>
+  </div>
 
 <script>
   lucide.createIcons();
@@ -512,12 +546,16 @@
       + `<div class="deco-cluster bl" style="transform:rotate(-8deg)">${cluster()}</div>`);
   });
 
-  /* ---- DSGVO-friendly Instagram: load SociableKit widget only on click ---- */
+  /* ============ Einwilligung für externe Inhalte (Instagram, Karte) ============ */
   (function(){
-    var btn = document.getElementById('instaBtn');
-    if (!btn) return;
-    btn.addEventListener('click', function(){
+    var STORAGE_KEY = 'ah-consent';   // 'all' | 'essential'
+    var instaLoaded = false, mapLoaded = false;
+
+    function loadInstagram(){
+      if (instaLoaded) return;
       var consent = document.getElementById('instaConsent');
+      if (!consent) return;
+      instaLoaded = true;
       var feed = document.createElement('div');
       feed.className = 'sk-instagram-feed';
       feed.setAttribute('data-embed-id', '25687495');
@@ -526,20 +564,51 @@
       s.src = 'https://widgets.sociablekit.com/instagram-feed/widget.js';
       s.defer = true;
       document.body.appendChild(s);
-    });
-  })();
+    }
 
-  /* ---- DSGVO-friendly map: load OpenStreetMap only on click ---- */
-  document.getElementById('mapBtn').addEventListener('click', function(){
-    var map = document.getElementById('map');
-    var f = document.createElement('iframe');
-    f.loading = 'lazy';
-    f.title = 'Karte Asien-Haus Tübingen, Schmiedtorstraße 11';
-    f.src = 'https://www.openstreetmap.org/export/embed.html?bbox=9.0480%2C48.5203%2C9.0561%2C48.5239&layer=mapnik&marker=48.522079%2C9.052032';
-    var c = document.getElementById('mapConsent');
-    if (c) c.remove();
-    map.appendChild(f);
-  });
+    function loadMap(){
+      if (mapLoaded) return;
+      var map = document.getElementById('map');
+      var c = document.getElementById('mapConsent');
+      if (!map || !c) return;
+      mapLoaded = true;
+      var f = document.createElement('iframe');
+      f.loading = 'lazy';
+      f.title = 'Karte Asien-Haus Tübingen, Schmiedtorstraße 11';
+      f.src = 'https://www.openstreetmap.org/export/embed.html?bbox=9.0480%2C48.5203%2C9.0561%2C48.5239&layer=mapnik&marker=48.522079%2C9.052032';
+      c.remove();
+      map.appendChild(f);
+    }
+
+    function getConsent(){ try { return localStorage.getItem(STORAGE_KEY); } catch(e){ return null; } }
+    function setConsent(v){ try { localStorage.setItem(STORAGE_KEY, v); } catch(e){} }
+
+    var bar = document.getElementById('cookieBar');
+    function showBar(){ if (bar) bar.hidden = false; }
+    function hideBar(){ if (bar) bar.hidden = true; }
+
+    function acceptAll(){ setConsent('all'); hideBar(); loadInstagram(); loadMap(); }
+    function rejectAll(){ setConsent('essential'); hideBar(); }
+
+    var ba = document.getElementById('cookieAccept');
+    var br = document.getElementById('cookieReject');
+    if (ba) ba.addEventListener('click', acceptAll);
+    if (br) br.addEventListener('click', rejectAll);
+
+    var cs = document.getElementById('cookieSettings');
+    if (cs) cs.addEventListener('click', showBar);
+
+    // manuelles Einzel-Laden (funktioniert unabhängig von der Banner-Wahl)
+    var ib = document.getElementById('instaBtn');
+    if (ib) ib.addEventListener('click', loadInstagram);
+    var mb = document.getElementById('mapBtn');
+    if (mb) mb.addEventListener('click', loadMap);
+
+    // gespeicherte Entscheidung anwenden
+    var choice = getConsent();
+    if (choice === 'all'){ loadInstagram(); loadMap(); }
+    else if (choice !== 'essential'){ showBar(); }   // noch keine Entscheidung → Banner zeigen
+  })();
 
   /* ---- live open/closed status, computed in Europe/Berlin time ---- */
   // schedule[dayIndex] = array of [openMinutes, closeMinutes]; day 0 = Sunday
