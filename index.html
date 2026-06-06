@@ -190,11 +190,12 @@
   @media (max-width:760px){ .status .txt small{ display:none; } .status{ padding:8px 13px; } }
 
   /* compact variant when the badge sits in the hours-panel header */
-  .hours .h-top .status{ padding:5px 11px 5px 9px; font-size:12.5px; gap:7px; border-radius:999px; }
+  .hours .h-top .status{ padding:4px 10px 4px 8px; font-size:12px; gap:6px; border-radius:999px; }
   .hours .h-top .status .dot{ width:7px; height:7px; }
   .hours .h-top .status .txt small{ display:none; }
   @media (max-width:760px){
-    .hours .h-top .status{ padding:4px 10px 4px 8px; font-size:11.5px; gap:6px; }
+    .hours .h-top{ flex-wrap:wrap; }
+    .hours .h-top .status{ padding:4px 10px 4px 8px; font-size:11.5px; gap:6px; margin-left:0; }
     .hours .h-top .status .dot{ width:6px; height:6px; }
   }
   .eyebrow{ font-size:12px; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:var(--blue); }
@@ -230,7 +231,7 @@
     margin:2px 0 24px; background:var(--tint); border:1px solid var(--tint-line);
     border-radius:16px; padding:20px 22px;
   }
-  .hours .h-top{ display:flex; align-items:center; gap:10px 12px; margin-bottom:14px; flex-wrap:wrap; }
+  .hours .h-top{ display:flex; align-items:center; gap:10px 12px; margin-bottom:14px; }
   .hours .h-top i{ width:20px; height:20px; color:var(--blue); flex:none; }
   .hours .h-top span{ font-family:'Sora',sans-serif; font-weight:600; font-size:15px; letter-spacing:.02em; color:var(--ink); min-width:0; }
   .hours .h-top em{ font-style:normal; margin-left:auto; font-size:12px; font-weight:700; color:#0f7a3d;
