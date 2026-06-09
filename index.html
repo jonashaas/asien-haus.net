@@ -42,8 +42,8 @@
     --awn:        #0c5fb0;   /* awning cobalt */
     --awn-deep:   #0a4e91;   /* awning shadow / cassette */
     --awn-bright: #2e80cf;   /* sheen */
-    --navy:       #07294a;   /* page base */
-    --navy-2:     #0b3a68;   /* page gradient */
+    --navy:       #f6f5eb;   /* page base */
+    --navy-2:     #ffffff;   /* page gradient */
     --blue:       #0c62b8;   /* accent */
     --blue-2:     #1573d4;
     --tint:       #e9f2fc;   /* light blue panel */
@@ -55,8 +55,8 @@
     --ink-3:      #7388a0;
     --card:       #ffffff;
     --radius:     22px;
-    --shadow-1:   0 1px 2px rgba(7,30,55,.18), 0 8px 24px -10px rgba(7,30,55,.35);
-    --shadow-2:   0 2px 6px rgba(7,30,55,.20), 0 22px 50px -18px rgba(7,30,55,.55);
+    --shadow-1:   0 1px 2px rgba(7,30,55,.07), 0 6px 16px -6px rgba(7,30,55,.14);
+    --shadow-2:   0 0 0 1px rgba(7,30,55,.04), 0 2px 8px rgba(7,30,55,.08), 0 18px 40px -16px rgba(7,30,55,.22);
   }
 
   *{ box-sizing:border-box; }
@@ -97,12 +97,22 @@
     filter:drop-shadow(0 2px 1px rgba(0,0,0,.35)); }
   .brand .wordmark{
     font-family:'Rickshaw','Sora',sans-serif; font-weight:400; letter-spacing:.01em;
+    text-decoration:none;
     font-size:clamp(46px,8vw,88px); line-height:1; color:var(--gold-soft);
     text-shadow:0 2px 0 rgba(0,0,0,.18), 0 5px 14px rgba(0,0,0,.28);
   }
   .brand .sub{
     color:rgba(255,255,255,.92); font-size:13px; letter-spacing:.34em;
     text-transform:uppercase; font-weight:600; text-align:center;
+  }
+  .brand .est{
+    display:inline-flex; align-items:center; gap:8px; margin:0;
+    color:var(--gold-soft); font-family:'Sora',sans-serif; font-weight:700;
+    font-size:12px; letter-spacing:.28em; text-transform:uppercase;
+		margin-top: -10px; margin-bottom: 5px;
+  }
+  .brand .est::before, .brand .est::after{
+    content:""; width:22px; height:1px; background:rgba(234,200,110,.55);
   }
   /* white binding line just above the scallops */
   .piping{ height:5px; background:#f3f7fb; box-shadow:0 1px 3px rgba(0,0,0,.25); position:relative; z-index:2; }
@@ -125,41 +135,61 @@
   }
 
   /* ============ INTRO ============ */
-  .intro{ text-align:center; color:#eaf3fc; padding:38px 24px 4px; }
+  .intro{ color:var(--ink); padding:38px 24px 0; position:relative;
+    display:flex; flex-direction:column; align-items:center; text-align:center; }
+  .intro-main{ display:flex; flex-direction:column; align-items:center; }
+  .intro-deco{
+    display:block; flex:none; margin:0 auto 16px; width:96px; height:auto;
+    opacity:.92; pointer-events:none; user-select:none;
+  }
+  .intro-text{ min-width:0; }
   .intro h1{
     font-family:'Sora',sans-serif; font-weight:700; letter-spacing:-.02em;
     font-size:clamp(26px,4.4vw,40px); margin:0 0 14px; line-height:1.12;
   }
-  .intro h1 b{ color:var(--gold-soft); font-weight:800; }
-  .intro p{ margin:0 auto; max-width:640px; color:#bcd2e8; font-size:17px; line-height:1.7; }
+  .intro h1 b{ font-weight:800; }
+  .intro p{ margin:0 auto; max-width:640px; color:var(--ink); font-size:17px; line-height:1.7; }
   .quicklinks{ display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:26px; }
+
+  /* desktop: image left & bigger, text right; nav stays centered below both */
+  @media (min-width:761px){
+    .intro{ padding:48px 24px 0; }
+    .intro-main{ flex-direction:row; align-items:center; justify-content:center;
+      text-align:left; gap:40px; }
+    .intro-deco{ margin:0; width:min(280px,28vw); }
+    .intro p{ margin:0; }
+    .quicklinks{ margin-top:46px; }
+  }
   .quicklinks a{
     display:inline-flex; align-items:center; gap:8px;
-    background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18);
-    color:#eaf3fc; text-decoration:none; font-weight:600; font-size:14px;
-    padding:11px 18px; border-radius:999px; backdrop-filter:blur(6px);
-    transition:background .25s, border-color .25s, transform .25s;
+    background:var(--card); border:1px solid var(--tint-line);
+    color:#0f4d8c; text-decoration:none; font-weight:600; font-size:14px;
+    padding:11px 18px; border-radius:999px;
+    box-shadow:var(--shadow-1);
+    transition:background .25s, border-color .25s, color .25s, transform .25s;
   }
-  .quicklinks a:hover{ background:rgba(46,128,207,.35); border-color:var(--awn-bright); transform:translateY(-2px); }
-  .quicklinks a i{ width:17px; height:17px; }
+  .quicklinks a:hover{ background:var(--blue); border-color:var(--blue); color:#fff; transform:translateY(-2px); }
+  .quicklinks a:hover i, .quicklinks a:hover svg{ color:#fff; }
+  .quicklinks a i, .quicklinks a svg{ width:17px; height:17px; color:var(--blue); transition:color .25s; }
 
   /* ============ SECTIONS / MATERIAL CARDS ============ */
   main{ padding:40px 0 24px; }
 
-  /* ---------- playful corner motif (Option B) ---------- */
-  /* faint tint shapes inside each white card, clipped by the card's
-     rounded corners (top-right + bottom-left). */
-  .card > .deco-cluster{ position:absolute; pointer-events:none; z-index:0; }
-  .card > .deco-cluster.tr{ top:-46px; right:-46px; left:auto; }
-  .card > .deco-cluster b{ background:rgba(12,98,184,.055); }
-  .card > .deco-cluster b.g{ background:rgba(214,169,78,.07); }
-  .deco-cluster{ position:relative; width:260px; height:260px; }
-  .deco-cluster b{ position:absolute; display:block; }
+  /* ---------- asian motif watermark (corner cluster) ---------- */
+  /* faint line-art icons (China · Japan · Korea · Thailand) clipped by the
+     card's rounded corner. */
+  .card > .wm-group{
+    position:absolute; top:-26px; right:-26px; left:auto; z-index:0;
+    display:grid; grid-template-columns:repeat(2,72px); gap:4px;
+    transform:rotate(8deg); color:var(--blue); opacity:.06;
+    pointer-events:none; user-select:none;
+  }
+  .card > .wm-group svg{ width:72px; height:72px; display:block; }
   /* keep card content above the motif */
   .card-head, .grid, .contact-grid, .insta-body, .features{ position:relative; z-index:1; }
 
   @media (max-width:760px){
-    .card > .deco-cluster.tr{ transform:scale(.7); transform-origin:top right; }
+    .card > .wm-group{ transform:scale(.66) rotate(8deg); transform-origin:top right; }
   }
   .card{
     background:var(--card); border-radius:var(--radius);
@@ -283,6 +313,11 @@
   .call-badge .cb-txt strong{ font-family:'Sora',sans-serif; font-size:18px; font-weight:600; color:var(--ink); letter-spacing:.01em; }
   .call-badge .cb-go{ margin-left:auto; width:20px; height:20px; color:var(--blue); flex:none; }
 
+  /* compact Instagram follow pill */
+  .ig-line{ font-size:15px; line-height:1.7; color:var(--ink-3); margin:14px 0 0; }
+  .ig-link{ color:var(--blue); font-weight:600; text-decoration:none; border-bottom:1px solid rgba(15,77,140,.35); transition:border-color .2s, color .2s; }
+  .ig-link:hover{ color:#08487f; border-bottom-color:#08487f; }
+
   /* ============ INSTAGRAM ============ */
   .insta-body{ padding:8px 28px 32px; }
   .insta-body .sk-instagram-feed{ min-height:120px; }
@@ -328,14 +363,14 @@
   .map-consent a{ font-size:12.5px; font-weight:600; color:var(--blue); text-decoration:none; }
 
   /* ============ FOOTER ============ */
-  footer{ text-align:center; color:#9fb9d6; padding:30px 24px 54px; font-size:13.5px; line-height:1.9; }
-  footer .fb{ color:var(--gold-soft); font-weight:700; }
-  footer a{ color:#cfe0f4; text-decoration:none; }
+  footer{ text-align:center; color:var(--ink-2); padding:30px 24px 54px; font-size:13.5px; line-height:1.9; }
+  footer .fb{ color:var(--gold); font-weight:700; }
+  footer a{ color:var(--blue); text-decoration:none; }
   footer a:hover{ text-decoration:underline; }
-  footer .copyright{ margin-top:6px; color:#7e98b8; font-size:12.5px; }
+  footer .copyright{ margin-top:6px; color:var(--ink-3); font-size:12.5px; }
   footer .legal{ margin-top:8px; font-size:12.5px; }
-  footer .legal a{ color:#bcd2e8; font-weight:600; }
-  footer .legal button{ background:none; border:0; color:#bcd2e8; font-weight:600; font-size:12.5px;
+  footer .legal a{ color:var(--blue); font-weight:600; }
+  footer .legal button{ background:none; border:0; color:var(--blue); font-weight:600; font-size:12.5px;
     font-family:'Inter',sans-serif; cursor:pointer; padding:0; }
   footer .legal button:hover{ text-decoration:underline; }
 
@@ -373,7 +408,8 @@
   <header data-screen-label="Header / Markise">
     <div class="awning">
       <div class="brand">
-        <div class="wordmark">Asien-Haus</div>
+        <a class="wordmark" href="/">Asien-Haus</a>
+        <div class="est">seit 1997</div>
         <div class="sub">Feinkost · Imbiss · Tübinger Altstadt</div>
       </div>
     </div>
@@ -383,8 +419,13 @@
 
   <!-- ===================== INTRO ===================== -->
   <section class="intro wrap">
-    <h1>Asiatische Lebensmittel &amp; Thai-Imbiss <br /><b>mitten in der Tübinger Altstadt</b></h1>
-    <p>Auf über 200&nbsp;qm in zwei Häusern führen wir ein riesiges Sortiment aus fast allen Ländern Asiens – mit Fokus auf Bio, frischem Gemüse und frischen Kräutern. Nebenan verwöhnt Sie unser Imbiss mit thailändischen Köstlichkeiten.</p>
+    <div class="intro-main">
+      <img class="intro-deco" src="assets/buddha.png" alt="" aria-hidden="true" />
+      <div class="intro-text">
+        <h1><b>Asiatische Lebensmittel &amp; Thai-Imbiss</b> mitten in der Tübinger Altstadt</h1>
+        <p>Auf über 200&nbsp;qm in zwei Häusern führen wir ein riesiges Sortiment aus fast allen Ländern Asiens. Nebenan verwöhnt Sie unser Imbiss mit thailändischen Köstlichkeiten.</p>
+      </div>
+    </div>
     <div class="quicklinks">
       <a href="#laden"><i data-lucide="store"></i> Laden</a>
       <a href="#imbiss"><i data-lucide="soup"></i> Imbiss</a>
@@ -418,17 +459,23 @@
             </a>
           </div>
           <p>Das Asien-Haus bietet in zwei Häusern auf über 200&nbsp;qm ein riesiges Sortiment asiatischer Lebensmittel. Damit sind wir <b>der</b> kompetente Partner für jeden (Hobby-)Koch.</p>
-          <p>Neben Lebensmitteln aus fast allen Ländern Asiens führen wir auch frisches Gemüse, frische Kräuter und ein großes Sortiment asiatischer Bio-Produkte. Sie finden uns in der Tübinger Altstadt in der Schmiedtorstraße – direkt gegenüber der Fruchtschranne zwischen der Krummen Brücke und dem Parkhaus König.</p>
+          <p>Neben Lebensmitteln aus fast allen Ländern Asiens führen wir auch frisches Gemüse, frische Kräuter und ein großes Sortiment asiatischer Bio-Produkte. Sie finden uns in der Tübinger Altstadt in der Schmiedtorstraße – direkt gegenüber des Bürgeramtes.</p>
+					<p>"Wichtiger Hinweis: Wir haben uns dafür entschlossen, sämtliche Lebensmittel vom Umtausch auszuschließen"
+</p>
         </div>
         <div class="media">
           <img src="assets/storefront.jpeg" alt="Asien-Haus Laden in der Schmiedtorstraße, Tübingen" />
         </div>
       </div>
       <div class="features">
-        <span class="chip"><i data-lucide="sprout"></i> Frische Kräuter: Thai-Basilikum, Koriander</span>
-        <span class="chip"><i data-lucide="leaf"></i> Fokus <b>Bio</b></span>
+        <span class="chip"><i data-lucide="shopping-basket"></i> Asiatische Lebensmittel</span>
+        <span class="chip"><i data-lucide="sprout"></i>Frische Kräuter aus Asien</span>
+        <span class="chip"><i data-lucide="leaf"></i>Bio-Produkte</span>
         <span class="chip"><i data-lucide="globe"></i> Süd-amerikanische Lebensmittel</span>
         <span class="chip"><i data-lucide="carrot"></i> Frisches Gemüse</span>
+        <span class="chip"><i data-lucide="utensils-crossed"></i> Geschirr</span>
+        <span class="chip"><i data-lucide="flower-2"></i> Deko</span>
+        <span class="chip"><i data-lucide="flame"></i> Räucherwerk</span>
       </div>
     </section>
 
@@ -450,7 +497,6 @@
             <div class="h-top"><i data-lucide="clock"></i><span>Öffnungszeiten Imbiss</span><div class="status" data-hours="imbiss"></div></div>
             <div class="row"><span class="d">Montag – Freitag</span><span class="t">11:30 – 15:00</span></div>
             <div class="row"><span class="d">Samstag &amp; Sonntag</span><span class="t">geschlossen</span></div>
-            <p class="note"><i data-lucide="info"></i> Durchgehend warme Küche – ideal auch für den schnellen Mittagstisch.</p>
             <a class="call-badge" href="tel:+497071552086">
               <span class="cb-ic"><i data-lucide="phone"></i></span>
               <span class="cb-txt"><small>Anruf · Imbiss</small><strong>07071 552086</strong></span>
@@ -458,12 +504,12 @@
             </a>
           </div>
           <p>Im Imbissbereich verwöhnen wir Sie mit thailändischen Köstlichkeiten. Schauen Sie sich einfach unsere täglich wechselnde Speisekarte an – alle Gerichte gibt es auch problemlos zum Mitnehmen.</p>
+          <p class="ig-line">Wenn Sie mehr über unsere Küche und Gerichte erfahren möchten, folgen Sie uns doch auf Instagram: <a class="ig-link" href="https://www.instagram.com/asienhaus.imbiss/" target="_blank" rel="noopener">@asienhaus.imbiss</a>.</p>
         </div>
       </div>
       <div class="features">
-        <span class="chip"><i data-lucide="flame"></i> Nudelsuppe – unser <b>Fokus</b></span>
+        <span class="chip"><i data-lucide="flame"></i> Nudelsuppe</span>
         <span class="chip"><i data-lucide="calendar"></i> Täglich wechselnde Tageskarte</span>
-        <span class="chip"><i data-lucide="utensils"></i> Durchgehend warme Küche</span>
         <span class="chip"><i data-lucide="shopping-bag"></i> Alles auch zum Mitnehmen</span>
       </div>
     </section>
@@ -537,8 +583,6 @@
   </main>
 
   <footer>
-    <div class="fb">Asien-Haus</div>
-    Schmiedtorstraße 7 und 11 · 72070 Tübingen · Inhaber: Johannes Hegedüs
     <div class="copyright">© <span id="year">2026</span> Asien-Haus · Alle Rechte vorbehalten</div>
     <div class="legal"><a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a> · <button type="button" id="cookieSettings">Cookie-Einstellungen</button></div>
   </footer>
@@ -558,17 +602,18 @@
   /* keep footer copyright year current */
   (function(){ var y=document.getElementById('year'); if(y) y.textContent=new Date().getFullYear(); })();
 
-  /* ---- playful corner motif (Option B): build clusters inside each card ---- */
-  function cluster(){
-    const sq = (s,r,t,l,g)=>`<b class="${g?'g':''}" style="width:${s}px;height:${s}px;border-radius:${r}px;top:${t}px;left:${l}px"></b>`;
-    const ci = (s,t,l,g)=>`<b class="${g?'g':''}" style="width:${s}px;height:${s}px;border-radius:50%;top:${t}px;left:${l}px"></b>`;
-    return sq(120,40,28,70,false) + ci(82,150,12,true)
-      + sq(60,22,0,8,false) + ci(46,168,150,false) + sq(40,15,96,168,true);
-  }
-  document.querySelectorAll('main .card').forEach(card=>{
-    card.insertAdjacentHTML('afterbegin',
-      `<div class="deco-cluster tr" style="transform:rotate(20deg)">${cluster()}</div>`);
-  });
+  /* ---- asian motif watermark: faint line-art cluster inside each card ---- */
+  (function(){
+    var S='fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"';
+    var china='<svg viewBox="0 0 100 100" '+S+'><line x1="50" y1="8" x2="50" y2="18"/><rect x="37" y="18" width="26" height="7" rx="2.5"/><ellipse cx="50" cy="50" rx="25" ry="25"/><path d="M41 27 C 35 42, 35 58, 41 73"/><path d="M59 27 C 65 42, 65 58, 59 73"/><line x1="50" y1="25" x2="50" y2="75"/><rect x="37" y="75" width="26" height="7" rx="2.5"/><line x1="44" y1="82" x2="44" y2="92"/><line x1="50" y1="82" x2="50" y2="94"/><line x1="56" y1="82" x2="56" y2="92"/></svg>';
+    var japan='<svg viewBox="0 0 100 100" '+S+'><path d="M12 28 Q50 16 88 28"/><line x1="16" y1="34" x2="84" y2="34"/><line x1="20" y1="46" x2="80" y2="46"/><line x1="30" y1="30" x2="27" y2="88"/><line x1="70" y1="30" x2="73" y2="88"/><line x1="50" y1="34" x2="50" y2="46"/></svg>';
+    var korea='<svg viewBox="0 0 100 100" '+S+'><circle cx="50" cy="50" r="33"/><path d="M50 17 A 16.5 16.5 0 0 1 50 50 A 16.5 16.5 0 0 0 50 83"/></svg>';
+    var thai='<svg viewBox="0 0 100 100" '+S+'><line x1="50" y1="6" x2="50" y2="15"/><path d="M50 15 C 44 28, 44 40, 50 44 C 56 40, 56 28, 50 15 Z"/><path d="M40 60 L50 44 L60 60 Z"/><path d="M33 78 L50 58 L67 78 Z"/><line x1="29" y1="86" x2="71" y2="86"/></svg>';
+    var group='<div class="wm-group" aria-hidden="true">'+china+korea+japan+thai+'</div>';
+    document.querySelectorAll('main .card').forEach(function(card){
+      card.insertAdjacentHTML('afterbegin', group);
+    });
+  })();
 
   /* ============ Einwilligung für externe Inhalte (Instagram, Karte) ============ */
   (function(){
