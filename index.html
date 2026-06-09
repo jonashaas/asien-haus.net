@@ -42,7 +42,7 @@
     --awn:        #0c5fb0;   /* awning cobalt */
     --awn-deep:   #0a4e91;   /* awning shadow / cassette */
     --awn-bright: #2e80cf;   /* sheen */
-    --navy:       #f6f5eb;   /* page base */
+    --navy:       #fdfcf2;   /* page base */
     --navy-2:     #ffffff;   /* page gradient */
     --blue:       #0c62b8;   /* accent */
     --blue-2:     #1573d4;
@@ -394,6 +394,19 @@
     box-shadow:0 8px 18px -6px rgba(12,98,184,.7); }
   @media (max-width:600px){ .cookie-bar button{ flex:1 1 auto; min-width:0; } }
 
+  /* ============ BACK TO TOP ============ */
+  .to-top{ position:fixed; right:22px; bottom:22px; z-index:55;
+    width:48px; height:48px; border-radius:50%; border:1px solid var(--tint-line);
+    display:inline-flex; align-items:center; justify-content:center; cursor:pointer;
+    color:#fff; background:linear-gradient(150deg,var(--blue-2),var(--blue));
+    box-shadow:0 10px 24px -8px rgba(12,98,184,.6);
+    opacity:0; visibility:hidden; transform:translateY(12px);
+    transition:opacity .25s, transform .25s, visibility .25s, box-shadow .25s; }
+  .to-top.show{ opacity:1; visibility:visible; transform:translateY(0); }
+  .to-top:hover{ transform:translateY(-2px); box-shadow:0 14px 28px -8px rgba(12,98,184,.7); }
+  .to-top svg{ width:22px; height:22px; }
+  @media (max-width:760px){ .to-top{ right:16px; bottom:16px; width:44px; height:44px; } }
+
   @media (max-width:760px){
     .grid, .contact-grid{ grid-template-columns:1fr; gap:22px; padding:22px 22px 24px; }
     .card-head{ padding:24px 22px 0; flex-wrap:wrap; }
@@ -459,7 +472,7 @@
             </a>
           </div>
           <p>Das Asien-Haus bietet in zwei Häusern auf über 200&nbsp;qm ein riesiges Sortiment asiatischer Lebensmittel. Damit sind wir <b>der</b> kompetente Partner für jeden (Hobby-)Koch.</p>
-          <p>Neben Lebensmitteln aus fast allen Ländern Asiens führen wir auch frisches Gemüse, frische Kräuter und ein großes Sortiment asiatischer Bio-Produkte. Sie finden uns in der Tübinger Altstadt in der Schmiedtorstraße – direkt gegenüber des Bürgeramtes.</p>
+          <p>Neben Lebensmitteln aus fast allen Ländern Asiens führen wir auch frisches Gemüse, frische Kräuter und ein großes Sortiment asiatischer Bio-Produkte. Über die Küche hinaus finden Sie bei uns außerdem Kochutensilien, Geschirr und Räucherwerk – alles für die asiatische Küche und ein Stück fernöstliches Lebensgefühl. Sie finden uns in der Tübinger Altstadt in der Schmiedtorstraße – direkt gegenüber des Bürgeramtes.</p>
 					<p>"Wichtiger Hinweis: Wir haben uns dafür entschlossen, sämtliche Lebensmittel vom Umtausch auszuschließen"
 </p>
         </div>
@@ -587,6 +600,11 @@
     <div class="legal"><a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a> · <button type="button" id="cookieSettings">Cookie-Einstellungen</button></div>
   </footer>
 
+  <!-- ===================== BACK TO TOP ===================== -->
+  <button type="button" class="to-top" id="toTop" aria-label="Nach oben scrollen">
+    <i data-lucide="arrow-up"></i>
+  </button>
+
   <!-- ===================== CONSENT BANNER ===================== -->
   <div class="cookie-bar" id="cookieBar" hidden>
     <p>Wir laden externe Inhalte (Instagram-Feed und Karte) nur mit Ihrer Einwilligung. Dabei können Daten an Dritte übertragen werden. Mehr dazu in der <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
@@ -601,6 +619,16 @@
 
   /* keep footer copyright year current */
   (function(){ var y=document.getElementById('year'); if(y) y.textContent=new Date().getFullYear(); })();
+
+  /* ---- back-to-top button: show after scrolling, smooth scroll up ---- */
+  (function(){
+    var btn=document.getElementById('toTop'); if(!btn) return;
+    var onScroll=function(){ btn.classList.toggle('show', window.scrollY>480); };
+    window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+    btn.addEventListener('click', function(){
+      window.scrollTo({ top:0, behavior:'smooth' });
+    });
+  })();
 
   /* ---- asian motif watermark: faint line-art cluster inside each card ---- */
   (function(){
