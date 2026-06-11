@@ -661,6 +661,10 @@ sup { font-size: 0.55em; }
   margin-top: clamp(3rem, 6vw, 5rem);
 }
 .laden__contact { display: flex; flex-direction: column; gap: 1.4rem; max-width: 36ch; }
+.laden__ctas { display: flex; flex-wrap: wrap; gap: 1rem; }
+/* outlined button on a light section: hover fill is ink, so the label
+   must flip to paper (the base rule assumes a dark backdrop) */
+.laden .btn:hover .btn__label { color: var(--paper); }
 .laden__note { font-size: 0.78rem; line-height: 1.6; opacity: 0.55; }
 
 /* ---------- Hours component ---------- */
