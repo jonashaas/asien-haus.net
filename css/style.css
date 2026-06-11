@@ -85,6 +85,9 @@ sup { font-size: 0.55em; }
 
 .section { padding-block: var(--section); position: relative; }
 
+/* keeps number+unit pairs on one line even after SplitText word-splitting */
+.nowrap { white-space: nowrap; }
+
 /* ---------- Micro label ---------- */
 .label {
   font-size: 0.72rem;
