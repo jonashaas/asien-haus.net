@@ -1,593 +1,430 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Asien-Haus · Tübingen</title>
-<link rel="icon" href="assets/favicon.ico" sizes="any" />
-<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
-<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png" />
-<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
-<link rel="preload" href="assets/Rickshaw.woff2" as="font" type="font/woff2" crossorigin />
-<link rel="preload" href="assets/fonts/sora-v17-latin_latin-ext-700.woff2" as="font" type="font/woff2" crossorigin />
-<link rel="preload" href="assets/fonts/sora-v17-latin_latin-ext-800.woff2" as="font" type="font/woff2" crossorigin />
-<link rel="preload" href="assets/fonts/inter-v20-latin_latin-ext-regular.woff2" as="font" type="font/woff2" crossorigin />
-<link rel="preload" href="assets/fonts/inter-v20-latin_latin-ext-600.woff2" as="font" type="font/woff2" crossorigin />
-<script src="assets/lucide.min.js"></script>
-<style>
-  @font-face{
-    font-family:'Rickshaw';
-    src:url('assets/Rickshaw.woff2') format('woff2'),
-        url('assets/Rickshaw.woff') format('woff'),
-        url('assets/Rickshaw.ttf') format('truetype');
-    font-weight:normal; font-style:normal; font-display:block;
-  }
-  /* self-hosted Inter (DSGVO: keine Verbindung zu Google) */
-  @font-face{ font-family:'Inter'; font-style:normal; font-weight:400; font-display:swap;
-    src:url('assets/fonts/inter-v20-latin_latin-ext-regular.woff2') format('woff2'); }
-  @font-face{ font-family:'Inter'; font-style:normal; font-weight:500; font-display:swap;
-    src:url('assets/fonts/inter-v20-latin_latin-ext-500.woff2') format('woff2'); }
-  @font-face{ font-family:'Inter'; font-style:normal; font-weight:600; font-display:swap;
-    src:url('assets/fonts/inter-v20-latin_latin-ext-600.woff2') format('woff2'); }
-  @font-face{ font-family:'Inter'; font-style:normal; font-weight:700; font-display:swap;
-    src:url('assets/fonts/inter-v20-latin_latin-ext-700.woff2') format('woff2'); }
-  /* self-hosted Sora */
-  @font-face{ font-family:'Sora'; font-style:normal; font-weight:600; font-display:swap;
-    src:url('assets/fonts/sora-v17-latin_latin-ext-600.woff2') format('woff2'); }
-  @font-face{ font-family:'Sora'; font-style:normal; font-weight:700; font-display:swap;
-    src:url('assets/fonts/sora-v17-latin_latin-ext-700.woff2') format('woff2'); }
-  @font-face{ font-family:'Sora'; font-style:normal; font-weight:800; font-display:swap;
-    src:url('assets/fonts/sora-v17-latin_latin-ext-800.woff2') format('woff2'); }
-  :root{
-    --awn:        #0c5fb0;   /* awning cobalt */
-    --awn-deep:   #0a4e91;   /* awning shadow / cassette */
-    --awn-bright: #2e80cf;   /* sheen */
-    --navy:       #fdfcf2;   /* page base */
-    --navy-2:     #ffffff;   /* page gradient */
-    --blue:       #0c62b8;   /* accent */
-    --blue-2:     #1573d4;
-    --tint:       #e9f2fc;   /* light blue panel */
-    --tint-line:  #cfe2f7;
-    --gold:       #d6a94e;
-    --gold-soft:  #eac86e;
-    --ink:        #14283c;
-    --ink-2:      #4a6076;
-    --ink-3:      #7388a0;
-    --card:       #ffffff;
-    --radius:     22px;
-    --shadow-1:   0 1px 2px rgba(7,30,55,.07), 0 6px 16px -6px rgba(7,30,55,.14);
-    --shadow-2:   0 0 0 1px rgba(7,30,55,.04), 0 2px 8px rgba(7,30,55,.08), 0 18px 40px -16px rgba(7,30,55,.22);
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Asien-Haus Tübingen — Asiatische Lebensmittel &amp; Thai-Imbiss</title>
+  <meta name="description" content="Asien-Haus Tübingen: Asiatische Lebensmittel &amp; Thai-Imbiss mitten in der Tübinger Altstadt. Seit 1997. Zwei Häuser, über 200 m² — Schmiedtorstraße 7 &amp; 11.">
+  <meta name="theme-color" content="#0A102A">
+  <meta property="og:title" content="Asien-Haus Tübingen">
+  <meta property="og:description" content="Asiatische Lebensmittel &amp; Thai-Imbiss mitten in der Tübinger Altstadt — seit 1997.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="de_DE">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230A102A'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-size='34' font-weight='bold' fill='%23D9A441' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
 
-  *{ box-sizing:border-box; }
-  html,body{ margin:0; }
-  body{
-    font-family:'Inter',system-ui,sans-serif;
-    color:var(--ink);
-    background:
-      radial-gradient(1100px 600px at 80% -5%, rgba(46,128,207,.35), transparent 60%),
-      linear-gradient(180deg, var(--navy-2) 0%, var(--navy) 100%);
-    background-attachment:fixed;
-    -webkit-font-smoothing:antialiased;
-  }
-  .wrap{ max-width:1080px; margin:0 auto; padding:0 24px; }
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Thai:wght@500;600&text=บ้านเอเชียทือบิงเงินครัวไทยอาหารผักสมุนไพรธรรมชาติจานธูป&display=swap" rel="stylesheet">
 
-  /* ============ AWNING / MARQUISE HEADER ============ */
-  header{ position:relative; }
-  .awning{
-    position:relative;
-    background:
-      linear-gradient(180deg, rgba(255,255,255,.16), rgba(255,255,255,0) 22%),
-      linear-gradient(180deg, var(--awn-bright) 0%, var(--awn) 38%, var(--awn-deep) 100%);
-    padding:26px 24px 20px;
-    box-shadow:inset 0 -18px 30px -18px rgba(0,0,0,.5);
-  }
-  /* faint vertical fabric seams */
-  .awning::before{
-    content:""; position:absolute; inset:0;
-    background-image:repeating-linear-gradient(90deg, rgba(255,255,255,.05) 0 1px, transparent 1px 86px);
-    pointer-events:none;
-  }
-  .awning .brand{
-    position:relative; z-index:2;
-    display:flex; flex-direction:column; align-items:center; gap:10px;
-    max-width:1080px; margin:0 auto;
-  }
-  .brand img{ width:min(420px,68vw); height:auto; display:block;
-    filter:drop-shadow(0 2px 1px rgba(0,0,0,.35)); }
-  .brand .wordmark{
-    font-family:'Rickshaw','Sora',sans-serif; font-weight:400; letter-spacing:.01em;
-    text-decoration:none;
-    font-size:clamp(46px,8vw,88px); line-height:1; color:var(--gold-soft);
-    text-shadow:0 2px 0 rgba(0,0,0,.18), 0 5px 14px rgba(0,0,0,.28);
-  }
-  .brand .sub{
-    color:rgba(255,255,255,.92); font-size:13px; letter-spacing:.34em;
-    text-transform:uppercase; font-weight:600; text-align:center;
-  }
-  .brand .est{
-    display:inline-flex; align-items:center; gap:8px; margin:0;
-    color:var(--gold-soft); font-family:'Sora',sans-serif; font-weight:700;
-    font-size:12px; letter-spacing:.28em; text-transform:uppercase;
-		margin-top: -10px; margin-bottom: 5px;
-  }
-  .brand .est::before, .brand .est::after{
-    content:""; width:22px; height:1px; background:rgba(234,200,110,.55);
-  }
-  /* white binding line just above the scallops */
-  .piping{ height:5px; background:#f3f7fb; box-shadow:0 1px 3px rgba(0,0,0,.25); position:relative; z-index:2; }
-  /* scalloped valance from the sketch */
-  .valance{
-    height:34px;
-    background:radial-gradient(circle at 50% 0%, var(--awn) 0 59%, transparent 61%);
-    background-size:58px 58px;
-    background-position:center top;
-    background-repeat:repeat-x;
-    filter:drop-shadow(0 5px 6px rgba(0,0,0,.28));
-  }
-  /* shrink the awning bar a bit on small screens */
-  @media (max-width:600px){
-    .awning{ padding:16px 20px 12px; }
-    .awning .brand{ gap:6px; }
-    .brand .wordmark{ font-size:clamp(40px,12vw,88px); }
-    .brand .sub{ font-size:11px; letter-spacing:.26em; }
-    .valance{ height:26px; background-size:46px 46px; }
-  }
+  <link rel="stylesheet" href="css/style.css?v=3">
 
-  /* ============ INTRO ============ */
-  .intro{ color:var(--ink); padding:38px 24px 0; position:relative;
-    display:flex; flex-direction:column; align-items:center; text-align:center; }
-  .intro-main{ display:flex; flex-direction:column; align-items:center; }
-  .intro-deco{
-    display:block; flex:none; margin:0 auto 16px; width:96px; height:auto;
-    opacity:.92; pointer-events:none; user-select:none;
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "GroceryStore",
+    "name": "Asien-Haus",
+    "description": "Asiatische Lebensmittel & Thai-Imbiss mitten in der Tübinger Altstadt. Seit 1997.",
+    "foundingDate": "1997",
+    "founder": { "@type": "Person", "name": "Johannes Hegedüs" },
+    "telephone": "+49 7071 552088",
+    "email": "asienhaustuebingen@yahoo.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Schmiedtorstraße 7 und 11",
+      "postalCode": "72070",
+      "addressLocality": "Tübingen",
+      "addressCountry": "DE"
+    },
+    "geo": { "@type": "GeoCoordinates", "latitude": 48.522079, "longitude": 9.052032 },
+    "openingHours": ["Mo-Fr 10:00-19:00", "Sa 10:00-15:00"],
+    "sameAs": ["https://www.instagram.com/asienhaus.imbiss/"]
   }
-  .intro-text{ min-width:0; }
-  .intro h1{
-    font-family:'Sora',sans-serif; font-weight:700; letter-spacing:-.02em;
-    font-size:clamp(26px,4.4vw,40px); margin:0 0 14px; line-height:1.12;
-  }
-  .intro h1 b{ font-weight:800; }
-  .intro p{ margin:0 auto; max-width:640px; color:var(--ink); font-size:17px; line-height:1.7; }
-  .quicklinks{ display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:26px; }
+  </script>
 
-  /* desktop: image left & bigger, text right; nav stays centered below both */
-  @media (min-width:761px){
-    .intro{ padding:48px 24px 0; }
-    .intro-main{ flex-direction:row; align-items:center; justify-content:center;
-      text-align:left; gap:40px; }
-    .intro-deco{ margin:0; width:min(280px,28vw); }
-    .intro p{ margin:0; }
-    .quicklinks{ margin-top:46px; }
-  }
-  .quicklinks a{
-    display:inline-flex; align-items:center; gap:8px;
-    background:var(--card); border:1px solid var(--tint-line);
-    color:#0f4d8c; text-decoration:none; font-weight:600; font-size:14px;
-    padding:11px 18px; border-radius:999px;
-    box-shadow:var(--shadow-1);
-    transition:background .25s, border-color .25s, color .25s, transform .25s;
-  }
-  .quicklinks a:hover{ background:var(--blue); border-color:var(--blue); color:#fff; transform:translateY(-2px); }
-  .quicklinks a:hover i, .quicklinks a:hover svg{ color:#fff; }
-  .quicklinks a i, .quicklinks a svg{ width:17px; height:17px; color:var(--blue); transition:color .25s; }
-
-  /* ============ SECTIONS / MATERIAL CARDS ============ */
-  main{ padding:40px 0 24px; }
-
-  /* ---------- asian motif watermark (corner cluster) ---------- */
-  /* faint line-art icons (China · Japan · Korea · Thailand) clipped by the
-     card's rounded corner. */
-  .card > .wm-group{
-    position:absolute; top:-26px; right:-26px; left:auto; z-index:0;
-    display:grid; grid-template-columns:repeat(2,72px); gap:4px;
-    transform:rotate(8deg); color:var(--blue); opacity:.06;
-    pointer-events:none; user-select:none;
-  }
-  .card > .wm-group svg{ width:72px; height:72px; display:block; }
-  /* keep card content above the motif */
-  .card-head, .grid, .contact-grid, .insta-body, .features{ position:relative; z-index:1; }
-
-  @media (max-width:760px){
-    .card > .wm-group{ transform:scale(.66) rotate(8deg); transform-origin:top right; }
-  }
-  .card{
-    background:var(--card); border-radius:var(--radius);
-    box-shadow:var(--shadow-2); margin:30px 0; overflow:hidden;
-    position:relative;
-  }
-  .card-head{
-    display:flex; align-items:center; gap:16px;
-    padding:30px 36px 0;
-  }
-  .badge{
-    width:54px; height:54px; flex:none; border-radius:16px;
-    display:grid; place-items:center; color:#fff;
-    background:linear-gradient(150deg,var(--blue-2),var(--blue));
-    box-shadow:0 8px 18px -6px rgba(12,98,184,.7);
-  }
-  .badge i{ width:28px; height:28px; }
-  .card-head .titles{ display:flex; flex-direction:column; gap:3px; min-width:0; }
-  .card-head .titles h2, .card-head .titles .eyebrow{ overflow-wrap:anywhere; }
-
-  /* live open/closed status pill */
-  .status{
-    margin-left:auto; align-self:center; flex:none;
-    display:inline-flex; align-items:center; gap:9px;
-    padding:9px 16px 9px 14px; border-radius:999px;
-    font-family:'Sora',sans-serif; font-weight:600; font-size:14px; letter-spacing:.01em;
-    border:1px solid transparent; white-space:nowrap;
-  }
-  .status .dot{ width:9px; height:9px; border-radius:50%; position:relative; flex:none; }
-  .status .dot::after{ content:""; position:absolute; inset:-4px; border-radius:50%; opacity:.5; }
-  .status .txt{ display:flex; flex-direction:column; line-height:1.15; }
-  .status .txt small{ font-family:'Inter',sans-serif; font-weight:500; font-size:11px; opacity:.72; letter-spacing:0; }
-  .status.open{ background:#e3f6ea; border-color:#bfe8cc; color:#0f7a3d; }
-  .status.open .dot{ background:#1aa64b; box-shadow:0 0 0 0 rgba(26,166,75,.6); animation:pulse 2.4s infinite; }
-  .status.closed{ background:#fdeaea; border-color:#f4cccc; color:#c0392b; }
-  .status.closed .dot{ background:#d0463a; }
-  @keyframes pulse{ 0%{ box-shadow:0 0 0 0 rgba(26,166,75,.55);} 70%{ box-shadow:0 0 0 7px rgba(26,166,75,0);} 100%{ box-shadow:0 0 0 0 rgba(26,166,75,0);} }
-  @media (max-width:760px){ .status .txt small{ display:none; } .status{ padding:8px 13px; } }
-
-  /* compact variant when the badge sits in the hours-panel header */
-  .hours .h-top .status{ padding:4px 11px 4px 9px; font-size:11px; gap:6px; border-radius:999px; }
-  .hours .h-top .status .dot{ width:6px; height:6px; }
-  .hours .h-top .status .txt small{ display:none; }
-  @media (max-width:760px){
-    .hours .h-top{ flex-wrap:wrap; }
-    .hours .h-top span{ flex:1 1 calc(100% - 32px); }
-    .hours .h-top .status{ padding:4px 10px 4px 8px; font-size:11.5px; gap:6px; margin-left:0; margin-right:auto; }
-    .hours .h-top .status .dot{ width:6px; height:6px; }
-  }
-  .eyebrow{ font-size:12px; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:var(--blue); }
-  .card-head h2{
-    font-family:'Sora',sans-serif; font-weight:700; letter-spacing:-.02em;
-    font-size:clamp(28px,3.4vw,38px); margin:0; color:var(--ink);
-  }
-  .grid{ display:grid; grid-template-columns:1.15fr .85fr; gap:30px; padding:24px 36px 28px; align-items:start; }
-  /* allow grid/flex children to shrink below their min-content width so that
-     long words / nowrap pills don't blow the column past the card edge */
-  .grid > *, .contact-grid > *{ min-width:0; }
-  /* Laden has text left / image right, so flip the columns to keep the same
-     big-image / small-text ratio as the Imbiss section (desktop only) */
-  @media (min-width:761px){ #laden .grid{ grid-template-columns:.85fr 1.15fr; } }
-  .prose p{ font-size:16px; line-height:1.78; color:var(--ink-2); margin:0 0 16px; }
-  .prose p:last-child{ margin-bottom:0; }
-
-  /* feature tags as a full-width footer bar at the bottom of each card */
-  .features{
-    display:flex; flex-wrap:wrap; gap:8px; margin:0;
-    padding:16px 36px 24px;
-    border-top:1px solid var(--tint-line);
-    background:rgba(233,242,252,.5);
-  }
-  .chip{
-    display:inline-flex; align-items:center; gap:7px;
-    background:var(--card); border:1px solid var(--tint-line);
-    color:#0f4d8c; font-weight:600; font-size:12px;
-    padding:6px 11px; border-radius:999px;
-  }
-  .chip i{ width:14px; height:14px; color:var(--blue); }
-  .chip b{ color:var(--gold); font-weight:800; }
-
-  .media{ border-radius:16px; overflow:hidden; box-shadow:var(--shadow-1); }
-  .media img{ display:block; width:100%; height:420px; object-fit:cover; }
-
-  /* opening-times panel */
-  .hours{
-    margin:2px 0 24px; background:var(--tint); border:1px solid var(--tint-line);
-    border-radius:16px; padding:20px 22px;
-  }
-  .hours .h-top{ display:flex; align-items:center; gap:10px 12px; margin-bottom:14px; }
-  .hours .h-top i{ width:20px; height:20px; color:var(--blue); flex:none; }
-  .hours .h-top > span{ font-family:'Sora',sans-serif; font-weight:600; font-size:15px; letter-spacing:.02em; color:var(--ink); min-width:0; }
-  .hours .h-top em{ font-style:normal; margin-left:auto; font-size:12px; font-weight:700; color:#0f7a3d;
-    background:#e3f6ea; border:1px solid #bfe8cc; padding:4px 10px; border-radius:999px; }
-  .hours .row{ display:flex; justify-content:space-between; align-items:baseline; padding:9px 0; border-top:1px dashed var(--tint-line); }
-  .hours .row:first-of-type{ border-top:none; }
-  .hours .row .d{ color:var(--ink-2); font-weight:600; font-size:14.5px; }
-  .hours .row .t{ font-family:'Sora',sans-serif; font-weight:600; color:var(--ink); font-size:15px; }
-  .hours .note{ margin:12px 0 0; font-size:13px; color:var(--ink-3); display:flex; align-items:center; gap:7px; }
-  .hours .note i{ width:15px; height:15px; }
-
-  .phone-line{
-    display:inline-flex; align-items:center; gap:10px; margin-top:18px;
-    color:var(--blue); font-weight:700; text-decoration:none; font-size:17px;
-    font-family:'Sora',sans-serif;
-  }
-  .phone-line i{ width:19px; height:19px; }
-
-  /* call badge — lives at the bottom of each hours panel */
-  .call-badge{ display:flex; align-items:center; gap:13px; margin-top:16px;
-    background:#fff; border:1px solid var(--tint-line); border-radius:14px;
-    padding:12px 15px; min-height:58px; text-decoration:none;
-    transition:border-color .25s, box-shadow .25s, transform .2s; }
-  .call-badge:hover{ border-color:var(--blue); box-shadow:0 10px 20px -10px rgba(12,98,184,.55); transform:translateY(-1px); }
-  .call-badge:active{ transform:translateY(0); }
-  .call-badge .cb-ic{ width:40px; height:40px; flex:none; border-radius:11px; display:grid; place-items:center;
-    color:#fff; background:linear-gradient(150deg,var(--blue-2),var(--blue));
-    box-shadow:0 6px 14px -5px rgba(12,98,184,.7); }
-  .call-badge .cb-ic i{ width:20px; height:20px; }
-  .call-badge .cb-txt{ display:flex; flex-direction:column; line-height:1.22; min-width:0; }
-  .call-badge .cb-txt small{ font-size:11.5px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3); }
-  .call-badge .cb-txt strong{ font-family:'Sora',sans-serif; font-size:18px; font-weight:600; color:var(--ink); letter-spacing:.01em; }
-  .call-badge .cb-go{ margin-left:auto; width:20px; height:20px; color:var(--blue); flex:none; }
-
-  /* compact Instagram follow pill */
-  .ig-line{ font-size:15px; line-height:1.7; color:var(--ink-3); margin:14px 0 0; }
-  .ig-link{ color:var(--blue); font-weight:600; text-decoration:none; border-bottom:1px solid rgba(15,77,140,.35); transition:border-color .2s, color .2s; }
-  .ig-link:hover{ color:#08487f; border-bottom-color:#08487f; }
-
-  /* ============ INSTAGRAM ============ */
-  .insta-body{ padding:8px 28px 32px; }
-  .insta-body .sk-instagram-feed{ min-height:120px; }
-  .insta-consent{ display:flex; flex-direction:column; align-items:center; justify-content:center;
-    gap:12px; text-align:center; padding:40px 28px; min-height:160px;
-    background:var(--tint); border:1px solid var(--tint-line); border-radius:16px; }
-  .insta-consent > svg{ width:34px; height:34px; color:var(--blue); }
-  .insta-consent p{ margin:0; max-width:440px; font-size:13.5px; line-height:1.6; color:var(--ink-2); }
-  .insta-consent p b{ color:var(--ink); }
-  .insta-consent button{ font-family:'Inter',sans-serif; font-weight:700; font-size:14px; color:#fff;
-    background:linear-gradient(150deg,var(--blue-2),var(--blue)); border:0; padding:11px 22px;
-    border-radius:999px; cursor:pointer; box-shadow:0 8px 18px -6px rgba(12,98,184,.7);
-    transition:transform .2s, box-shadow .2s; }
-  .insta-consent button:hover{ transform:translateY(-2px); box-shadow:0 12px 22px -6px rgba(12,98,184,.8); }
-  .insta-consent a{ font-size:12.5px; font-weight:600; color:var(--blue); text-decoration:none; }
-
-  /* ============ KONTAKT / ANFAHRT ============ */
-  .contact-grid{ display:grid; grid-template-columns:1fr 1fr; gap:30px; padding:24px 36px 36px; }
-  .info-list{ display:flex; flex-direction:column; gap:18px; }
-  .info-item{ display:flex; gap:14px; align-items:flex-start; }
-  .info-item .ic{ width:40px; height:40px; flex:none; border-radius:11px; display:grid; place-items:center;
-    background:var(--tint); color:var(--blue); }
-  .info-item .ic i{ width:20px; height:20px; }
-  .info-item .lbl{ font-size:12px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3); margin-bottom:3px; }
-  .info-item .val{ font-size:16px; line-height:1.55; color:var(--ink); font-weight:500; }
-  .info-item .val a{ color:var(--blue); text-decoration:none; font-weight:600; }
-  .map{
-    border-radius:16px; overflow:hidden; box-shadow:var(--shadow-1); min-height:300px;
-    background:linear-gradient(180deg,#dce8f4,#cdddee);
-    display:grid; place-items:center; text-align:center; color:#5b7795; position:relative;
-  }
-  .map iframe{ width:100%; height:100%; min-height:300px; border:0; display:block; }
-  .map-consent{ position:absolute; inset:0; display:flex; flex-direction:column;
-    align-items:center; justify-content:center; gap:12px; text-align:center; padding:28px; }
-  .map-consent > i{ width:34px; height:34px; color:var(--blue); }
-  .map-consent p{ margin:0; max-width:280px; font-size:13.5px; line-height:1.6; color:var(--ink-2); }
-  .map-consent p b{ color:var(--ink); }
-  .map-consent button{ font-family:'Inter',sans-serif; font-weight:700; font-size:14px;
-    color:#fff; background:linear-gradient(150deg,var(--blue-2),var(--blue)); border:0;
-    padding:11px 22px; border-radius:999px; cursor:pointer;
-    box-shadow:0 8px 18px -6px rgba(12,98,184,.7); transition:transform .2s, box-shadow .2s; }
-  .map-consent button:hover{ transform:translateY(-2px); box-shadow:0 12px 22px -6px rgba(12,98,184,.8); }
-  .map-consent a{ font-size:12.5px; font-weight:600; color:var(--blue); text-decoration:none; }
-
-  /* ============ FOOTER ============ */
-  footer{ text-align:center; color:var(--ink-2); padding:30px 24px 54px; font-size:13.5px; line-height:1.9; }
-  footer .fb{ color:var(--gold); font-weight:700; }
-  footer a{ color:var(--blue); text-decoration:none; }
-  footer a:hover{ text-decoration:underline; }
-  footer .copyright{ margin-top:6px; color:var(--ink-3); font-size:12.5px; }
-  footer .legal{ margin-top:8px; font-size:12.5px; }
-  footer .legal a{ color:var(--blue); font-weight:600; }
-  footer .legal button{ background:none; border:0; color:var(--blue); font-weight:600; font-size:12.5px;
-    font-family:'Inter',sans-serif; cursor:pointer; padding:0; }
-  footer .legal button:hover{ text-decoration:underline; }
-
-  /* ============ CONSENT BANNER ============ */
-  .cookie-bar{ position:fixed; left:0; right:0; bottom:0; z-index:60;
-    background:#07294a; color:#eaf3fc; border-top:1px solid rgba(255,255,255,.14);
-    box-shadow:0 -12px 30px -14px rgba(0,0,0,.6);
-    padding:16px 22px; display:flex; gap:18px 22px; align-items:center; justify-content:center; flex-wrap:wrap; }
-  .cookie-bar[hidden]{ display:none; }
-  .cookie-bar p{ margin:0; max-width:640px; font-size:13.5px; line-height:1.6; color:#cfe0f4; }
-  .cookie-bar p a{ color:#eac86e; text-decoration:none; font-weight:600; }
-  .cookie-bar p a:hover{ text-decoration:underline; }
-  /* both buttons equally prominent (VG Hannover, 19.03.2025 – 10 A 5385/22) */
-  .cookie-bar .cb-actions{ display:flex; gap:10px; flex-wrap:wrap; }
-  .cookie-bar button{ font-family:'Inter',sans-serif; font-weight:700; font-size:14px;
-    padding:11px 22px; border-radius:999px; cursor:pointer; border:1px solid transparent;
-    min-width:160px; transition:transform .2s, box-shadow .2s; }
-  .cookie-bar button:hover{ transform:translateY(-1px); }
-  .cookie-bar .reject{ color:#eaf3fc; background:rgba(255,255,255,.14); border-color:rgba(255,255,255,.22); }
-  .cookie-bar .accept{ color:#fff; background:linear-gradient(150deg,var(--blue-2),var(--blue));
-    box-shadow:0 8px 18px -6px rgba(12,98,184,.7); }
-  @media (max-width:600px){ .cookie-bar button{ flex:1 1 auto; min-width:0; } }
-
-  /* ============ BACK TO TOP ============ */
-  .to-top{ position:fixed; right:22px; bottom:22px; z-index:55;
-    width:48px; height:48px; border-radius:50%; border:1px solid var(--tint-line);
-    display:inline-flex; align-items:center; justify-content:center; cursor:pointer;
-    color:#fff; background:linear-gradient(150deg,var(--blue-2),var(--blue));
-    box-shadow:0 10px 24px -8px rgba(12,98,184,.6);
-    opacity:0; visibility:hidden; transform:translateY(12px);
-    transition:opacity .25s, transform .25s, visibility .25s, box-shadow .25s; }
-  .to-top.show{ opacity:1; visibility:visible; transform:translateY(0); }
-  .to-top:hover{ transform:translateY(-2px); box-shadow:0 14px 28px -8px rgba(12,98,184,.7); }
-  .to-top svg{ width:22px; height:22px; }
-  @media (max-width:760px){ .to-top{ right:16px; bottom:16px; width:44px; height:44px; } }
-
-  @media (max-width:760px){
-    .grid, .contact-grid{ grid-template-columns:1fr; gap:22px; padding:22px 22px 24px; }
-    .card-head{ padding:24px 22px 0; flex-wrap:wrap; }
-    .media{ order:-1; }
-    .features{ padding:14px 22px 22px; }
-  }
-</style>
+  <script>if ("scrollRestoration" in history) history.scrollRestoration = "manual";</script>
+  <script type="importmap">
+    { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.166.1/build/three.module.js" } }
+  </script>
 </head>
 <body>
+  <a class="skip-link" href="#main">Zum Inhalt springen</a>
+  <noscript><style>.loader{display:none}</style></noscript>
 
-  <!-- ===================== AWNING HEADER ===================== -->
-  <header data-screen-label="Header / Markise">
-    <div class="awning">
-      <div class="brand">
-        <a class="wordmark" href="/">Asien-Haus</a>
-        <div class="est">seit 1997</div>
-        <div class="sub">Feinkost · Imbiss · Tübinger Altstadt</div>
-      </div>
+  <!-- ===== Preloader ===== -->
+  <div class="loader" aria-hidden="true">
+    <div class="loader__inner">
+      <span class="loader__word">Asien<em>—</em>Haus</span>
+      <span class="loader__count">00</span>
     </div>
-    <div class="piping"></div>
-    <div class="valance"></div>
+  </div>
+
+  <!-- ===== Custom cursor (desktop) ===== -->
+  <div class="cursor is-hidden" aria-hidden="true">
+    <div class="cursor__dot"></div>
+    <div class="cursor__ring"></div>
+  </div>
+
+  <!-- ===== Grain overlay ===== -->
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- ===== Navigation ===== -->
+  <header class="nav" id="top">
+    <a class="nav__brand" href="#start" data-scroll data-cursor>
+      Asien<span class="nav__dash">—</span>Haus
+      <span class="nav__sub">Tübingen · seit 1997</span>
+    </a>
+    <nav class="nav__links" aria-label="Hauptnavigation">
+      <a href="#haus" data-scroll data-cursor><sup>01</sup>Das Haus</a>
+      <a href="#laden" data-scroll data-cursor><sup>02</sup>Der Laden</a>
+      <a href="#imbiss" data-scroll data-cursor><sup>03</sup>Der Imbiss</a>
+      <a href="#kontakt" data-scroll data-cursor><sup>04</sup>Kontakt</a>
+    </nav>
+    <a class="nav__cta btn" href="tel:+497071552088" data-cursor>
+      <span class="btn__label">07071 552088</span>
+    </a>
+    <button class="nav__burger" aria-label="Menü öffnen" aria-expanded="false" data-cursor>
+      <span></span><span></span>
+    </button>
   </header>
 
-  <!-- ===================== INTRO ===================== -->
-  <section class="intro wrap">
-    <div class="intro-main">
-      <img class="intro-deco" src="assets/buddha.png" alt="" aria-hidden="true" />
-      <div class="intro-text">
-        <h1><b>Asiatische Lebensmittel &amp; Thai-Imbiss</b> mitten in der Tübinger Altstadt</h1>
-        <p>Auf über 200&nbsp;qm in zwei Häusern führen wir ein riesiges Sortiment aus fast allen Ländern Asiens. Nebenan verwöhnt Sie unser Imbiss mit thailändischen Köstlichkeiten.</p>
+  <!-- ===== Mobile overlay menu ===== -->
+  <div class="menu" aria-hidden="true">
+    <nav class="menu__links" aria-label="Mobilnavigation">
+      <a href="#haus" data-scroll><sup>01</sup><span>Das Haus</span></a>
+      <a href="#laden" data-scroll><sup>02</sup><span>Der Laden</span></a>
+      <a href="#imbiss" data-scroll><sup>03</sup><span>Der Imbiss</span></a>
+      <a href="#kontakt" data-scroll><sup>04</sup><span>Kontakt</span></a>
+    </nav>
+    <div class="menu__foot">
+      <p>Schmiedtorstraße 7 &amp; 11<br>72070 Tübingen</p>
+      <div class="menu__tels">
+        <a href="tel:+497071552088">Laden · 07071 552088</a>
+        <a href="tel:+497071552086">Imbiss · 07071 552086</a>
       </div>
     </div>
-    <div class="quicklinks">
-      <a href="#laden"><i data-lucide="store"></i> Laden</a>
-      <a href="#imbiss"><i data-lucide="soup"></i> Imbiss</a>
-      <a href="#instagram"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg> Instagram</a>
-      <a href="#kontakt"><i data-lucide="map-pin"></i> Anfahrt &amp; Kontakt</a>
+  </div>
+
+  <main id="main">
+
+    <!-- ===== Hero ===== -->
+    <section class="hero" id="start">
+      <canvas class="hero__canvas" id="scene" aria-hidden="true"
+        data-p1="#e9b452"
+        data-p2="#f6ecce"
+        data-p3="#9fb4e6"
+        data-glow-a="#e3a93c"
+        data-glow-b="#c98a23"
+        data-glow2-a="#3550b2"
+        data-glow2-b="#22336e"></canvas>
+      <div class="hero__veil" aria-hidden="true"></div>
+
+      <div class="hero__inner">
+        <p class="hero__kicker">
+          <span class="hero__kicker-item">Feinkost</span>
+          <span class="hero__kicker-dot">·</span>
+          <span class="hero__kicker-item">Imbiss</span>
+          <span class="hero__kicker-dot">·</span>
+          <span class="hero__kicker-item">Tübinger Altstadt</span>
+        </p>
+
+        <h1 class="hero__title">
+          <span class="hero__line"><span class="hero__line-inner">Asien</span></span>
+          <span class="hero__line hero__line--outline"><span class="hero__line-inner">Haus</span></span>
+        </h1>
+
+        <div class="hero__seal" aria-hidden="true">
+          <svg viewBox="0 0 96 96" fill="none">
+            <rect x="3" y="3" width="90" height="90" rx="14" stroke="currentColor" stroke-width="5"/>
+            <text x="48" y="41" class="hero__seal-glyph">บ้าน</text>
+            <text x="48" y="76" class="hero__seal-glyph">เอเชีย</text>
+          </svg>
+        </div>
+
+        <div class="hero__foot">
+          <p class="hero__tagline">Asiatische Lebensmittel &amp; Thai-Imbiss<br>mitten in der Tübinger Altstadt.</p>
+          <p class="hero__since"><em>Seit</em> 1997</p>
+          <div class="hero__scroll" aria-hidden="true">
+            <span>Scroll</span>
+            <svg viewBox="0 0 12 44" fill="none"><path d="M6 0v40m0 0l-5-6m5 6l5-6" stroke="currentColor" stroke-width="1.4"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <p class="hero__vertical" aria-hidden="true">บ้านเอเชีย · ทือบิงเงิน</p>
+    </section>
+
+    <!-- ===== Marquee ===== -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <div class="marquee__group">
+          <span>Asiatische Lebensmittel</span><i>✶</i>
+          <span>Thai-Imbiss</span><i>✶</i>
+          <span class="thai">ครัวไทย</span><i>✶</i>
+          <span>Seit 1997</span><i>✶</i>
+          <span>Frische Kräuter</span><i>✶</i>
+          <span>Bio-Produkte</span><i>✶</i>
+          <span>Geschirr &amp; Deko</span><i>✶</i>
+          <span>Räucherwerk</span><i>✶</i>
+          <span>Nudelsuppe</span><i>✶</i>
+          <span>Tübinger Altstadt</span><i>✶</i>
+        </div>
+        <div class="marquee__group">
+          <span>Asiatische Lebensmittel</span><i>✶</i>
+          <span>Thai-Imbiss</span><i>✶</i>
+          <span class="thai">ครัวไทย</span><i>✶</i>
+          <span>Seit 1997</span><i>✶</i>
+          <span>Frische Kräuter</span><i>✶</i>
+          <span>Bio-Produkte</span><i>✶</i>
+          <span>Geschirr &amp; Deko</span><i>✶</i>
+          <span>Räucherwerk</span><i>✶</i>
+          <span>Nudelsuppe</span><i>✶</i>
+          <span>Tübinger Altstadt</span><i>✶</i>
+        </div>
+      </div>
     </div>
-  </section>
 
-  <main class="wrap">
+    <!-- ===== 01 · Das Haus ===== -->
+    <section class="about section" id="haus">
+      <div class="container">
+        <p class="label reveal">(01) — Das Haus</p>
+        <h2 class="about__statement split-words">
+          Zwei Häuser. Über 200&nbsp;m². <em>Ganz Asien.</em>
+        </h2>
+        <div class="about__row">
+          <p class="about__body split-lines">
+            Seit 1997 führen wir mitten in der Tübinger Altstadt ein riesiges
+            Sortiment aus fast allen Ländern Asiens — von frischem Gemüse und
+            Kräutern über Bio-Produkte und südamerikanische Lebensmittel bis zu
+            Geschirr, Deko und Räucherwerk.
+          </p>
+          <p class="about__glyph" aria-hidden="true">บ้าน</p>
+        </div>
 
-    <!-- ===================== LADEN ===================== -->
-    <section class="card" id="laden" data-screen-label="Laden">
-      <div class="card-head">
-        <div class="badge"><i data-lucide="store"></i></div>
-        <div class="titles">
-          <span class="eyebrow">Feinkost · 200&nbsp;qm</span>
-          <h2>Laden</h2>
+        <ul class="stats">
+          <li class="stats__item reveal">
+            <span class="stats__num" data-count="1997">0000</span>
+            <span class="stats__cap">gegründet in der Altstadt</span>
+          </li>
+          <li class="stats__item reveal">
+            <span class="stats__num" data-count="2">0</span>
+            <span class="stats__cap">Häuser, ein Sortiment</span>
+          </li>
+          <li class="stats__item reveal">
+            <span class="stats__num" data-count="200" data-suffix="+">0</span>
+            <span class="stats__cap">Quadratmeter Asien</span>
+          </li>
+          <li class="stats__item reveal">
+            <span class="stats__num" data-count="6">0</span>
+            <span class="stats__cap">Tage die Woche geöffnet</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== 02 · Der Laden ===== -->
+    <section class="laden section" id="laden">
+      <div class="container">
+        <div class="laden__head">
+          <p class="label reveal">(02) — Der Laden</p>
+          <h2 class="laden__title split-words">Ein Sortiment aus fast allen Ländern <em>Asiens.</em></h2>
+        </div>
+
+        <ul class="plist">
+          <li class="plist__row" data-glyph="อาหาร">
+            <span class="plist__num">01</span>
+            <h3 class="plist__name">Asiatische Lebensmittel</h3>
+            <span class="plist__glyph" aria-hidden="true">อาหาร</span>
+            <svg class="plist__arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h15m0 0l-6-6m6 6l-6 6" stroke="currentColor" stroke-width="1.6"/></svg>
+          </li>
+          <li class="plist__row" data-glyph="ผัก">
+            <span class="plist__num">02</span>
+            <h3 class="plist__name">Frisches Gemüse</h3>
+            <span class="plist__glyph" aria-hidden="true">ผัก</span>
+            <svg class="plist__arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h15m0 0l-6-6m6 6l-6 6" stroke="currentColor" stroke-width="1.6"/></svg>
+          </li>
+          <li class="plist__row" data-glyph="สมุนไพร">
+            <span class="plist__num">03</span>
+            <h3 class="plist__name">Frische Kräuter aus Asien</h3>
+            <span class="plist__glyph" aria-hidden="true">สมุนไพร</span>
+            <svg class="plist__arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h15m0 0l-6-6m6 6l-6 6" stroke="currentColor" stroke-width="1.6"/></svg>
+          </li>
+          <li class="plist__row" data-glyph="ธรรมชาติ">
+            <span class="plist__num">04</span>
+            <h3 class="plist__name">Bio-Produkte</h3>
+            <span class="plist__glyph" aria-hidden="true">ธรรมชาติ</span>
+            <svg class="plist__arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h15m0 0l-6-6m6 6l-6 6" stroke="currentColor" stroke-width="1.6"/></svg>
+          </li>
+          <li class="plist__row" data-glyph="✶">
+            <span class="plist__num">05</span>
+            <h3 class="plist__name">Südamerikanische Lebensmittel</h3>
+            <span class="plist__glyph" aria-hidden="true">✶</span>
+            <svg class="plist__arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h15m0 0l-6-6m6 6l-6 6" stroke="currentColor" stroke-width="1.6"/></svg>
+          </li>
+          <li class="plist__row" data-glyph="จาน">
+            <span class="plist__num">06</span>
+            <h3 class="plist__name">Geschirr &amp; Deko</h3>
+            <span class="plist__glyph" aria-hidden="true">จาน</span>
+            <svg class="plist__arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h15m0 0l-6-6m6 6l-6 6" stroke="currentColor" stroke-width="1.6"/></svg>
+          </li>
+          <li class="plist__row" data-glyph="ธูป">
+            <span class="plist__num">07</span>
+            <h3 class="plist__name">Räucherwerk</h3>
+            <span class="plist__glyph" aria-hidden="true">ธูป</span>
+            <svg class="plist__arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h15m0 0l-6-6m6 6l-6 6" stroke="currentColor" stroke-width="1.6"/></svg>
+          </li>
+        </ul>
+
+        <div class="laden__info">
+          <div class="hours reveal">
+            <p class="hours__title">Öffnungszeiten Laden</p>
+            <dl class="hours__grid">
+              <dt>Montag – Freitag</dt><dd>10:00 – 19:00</dd>
+              <dt>Samstag</dt><dd>10:00 – 15:00</dd>
+              <dt>Sonntag</dt><dd>geschlossen</dd>
+            </dl>
+          </div>
+          <div class="laden__contact reveal">
+            <a class="btn btn--solid" href="tel:+497071552088" data-cursor>
+              <span class="btn__label">Laden anrufen · 07071 552088</span>
+            </a>
+            <p class="laden__note">Hinweis: Sämtliche Lebensmittel sind vom Umtausch ausgeschlossen.</p>
+          </div>
         </div>
       </div>
-      <div class="grid">
-        <div class="prose">
-          <div class="hours">
-            <div class="h-top"><i data-lucide="clock"></i><span>Öffnungszeiten Laden</span><div class="status" data-hours="laden"></div></div>
-            <div class="row"><span class="d">Montag – Freitag</span><span class="t">10:00 – 19:00</span></div>
-            <div class="row"><span class="d">Samstag</span><span class="t">10:00 – 15:00</span></div>
-            <div class="row"><span class="d">Sonntag</span><span class="t">geschlossen</span></div>
-            <a class="call-badge" href="tel:+497071552088">
-              <span class="cb-ic"><i data-lucide="phone"></i></span>
-              <span class="cb-txt"><small>Anruf · Laden</small><strong>07071 552088</strong></span>
-              <i data-lucide="chevron-right" class="cb-go"></i>
+    </section>
+
+    <!-- ===== 03 · Der Imbiss ===== -->
+    <section class="imbiss section" id="imbiss">
+      <div class="container">
+        <div class="imbiss__head">
+          <p class="label reveal">(03) — Der Imbiss · <span class="thai">ครัวไทย</span></p>
+          <h2 class="imbiss__title split-words">Thailändische <em>Küche.</em></h2>
+          <p class="imbiss__body split-lines">
+            Im Imbissbereich verwöhnen wir Sie mit thailändischen Köstlichkeiten —
+            frisch zubereitet, mitten in der Altstadt.
+          </p>
+        </div>
+
+        <div class="imbiss__grid">
+          <ul class="mlist">
+            <li class="mlist__row reveal">
+              <span class="mlist__num">01</span>
+              <h3 class="mlist__name">Nudelsuppe</h3>
+              <span class="mlist__tag">Der Klassiker</span>
+            </li>
+            <li class="mlist__row reveal">
+              <span class="mlist__num">02</span>
+              <h3 class="mlist__name">Wechselnde Tageskarte</h3>
+              <span class="mlist__tag">Täglich neu</span>
+            </li>
+            <li class="mlist__row reveal">
+              <span class="mlist__num">03</span>
+              <h3 class="mlist__name">Alles zum Mitnehmen</h3>
+              <span class="mlist__tag">Take-away</span>
+            </li>
+          </ul>
+
+          <div class="imbiss__bowl reveal" aria-hidden="true">
+            <svg viewBox="0 0 280 260" fill="none">
+              <!-- steam -->
+              <path class="steam" d="M118 96c-8-12 8-18 0-30s8-18 0-30" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+              <path class="steam steam--2" d="M150 90c-8-12 8-18 0-30s8-18 0-30" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+              <path class="steam steam--3" d="M182 96c-8-12 8-18 0-30s8-18 0-30" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+              <!-- chopsticks -->
+              <path class="bowl-line" d="M196 28L130 132M218 40L142 136" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+              <!-- noodles -->
+              <path class="bowl-line" d="M96 128c10 8 20-8 30 0s20-8 30 0 20-8 30 0" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/>
+              <!-- bowl -->
+              <path class="bowl-line" d="M58 132h164c0 36-22 64-50 74l-4 16h-56l-4-16c-28-10-50-38-50-74z" stroke="currentColor" stroke-width="4.4" stroke-linejoin="round"/>
+              <path class="bowl-line" d="M74 152h132" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+              <!-- plate -->
+              <path class="bowl-line" d="M96 232h88" stroke="currentColor" stroke-width="4.4" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="imbiss__foot">
+          <div class="hours reveal">
+            <p class="hours__title">Öffnungszeiten Imbiss</p>
+            <dl class="hours__grid">
+              <dt>Montag – Freitag</dt><dd>11:30 – 15:00</dd>
+              <dt>Samstag &amp; Sonntag</dt><dd>geschlossen</dd>
+            </dl>
+          </div>
+          <div class="imbiss__ctas reveal">
+            <a class="btn btn--ink" href="tel:+497071552086" data-cursor>
+              <span class="btn__label">Imbiss anrufen · 07071 552086</span>
+            </a>
+            <a class="btn" href="https://www.instagram.com/asienhaus.imbiss/" target="_blank" rel="noopener" data-cursor>
+              <span class="btn__label">Instagram · @asienhaus.imbiss</span>
             </a>
           </div>
-          <p>Das Asien-Haus bietet in zwei Häusern auf über 200&nbsp;qm ein riesiges Sortiment asiatischer Lebensmittel. Damit sind wir <b>der</b> kompetente Partner für jeden (Hobby-)Koch.</p>
-          <p>Neben Lebensmitteln aus fast allen Ländern Asiens führen wir auch frisches Gemüse, frische Kräuter und ein großes Sortiment asiatischer Bio-Produkte. Über die Küche hinaus finden Sie bei uns außerdem Kochutensilien, Geschirr und Räucherwerk – alles für die asiatische Küche und ein Stück fernöstliches Lebensgefühl. Sie finden uns in der Tübinger Altstadt in der Schmiedtorstraße – direkt gegenüber des Bürgeramtes.</p>
-					<p>"Wichtiger Hinweis: Wir haben uns dafür entschlossen, sämtliche Lebensmittel vom Umtausch auszuschließen"
-</p>
         </div>
-        <div class="media">
-          <img src="assets/storefront.jpeg" alt="Asien-Haus Laden in der Schmiedtorstraße, Tübingen" />
-        </div>
-      </div>
-      <div class="features">
-        <span class="chip"><i data-lucide="shopping-basket"></i> Asiatische Lebensmittel</span>
-        <span class="chip"><i data-lucide="sprout"></i>Frische Kräuter aus Asien</span>
-        <span class="chip"><i data-lucide="leaf"></i>Bio-Produkte</span>
-        <span class="chip"><i data-lucide="globe"></i> Süd-amerikanische Lebensmittel</span>
-        <span class="chip"><i data-lucide="carrot"></i> Frisches Gemüse</span>
-        <span class="chip"><i data-lucide="utensils-crossed"></i> Geschirr</span>
-        <span class="chip"><i data-lucide="flower-2"></i> Deko</span>
-        <span class="chip"><i data-lucide="flame"></i> Räucherwerk</span>
       </div>
     </section>
 
-    <!-- ===================== IMBISS ===================== -->
-    <section class="card" id="imbiss" data-screen-label="Imbiss">
-      <div class="card-head">
-        <div class="badge"><i data-lucide="soup"></i></div>
-        <div class="titles">
-          <span class="eyebrow">Thailändische Küche</span>
-          <h2>Imbiss</h2>
-        </div>
-      </div>
-      <div class="grid">
-        <div class="media">
-          <img src="assets/imbiss.jpeg" alt="Thailändische Gerichte aus dem Imbiss" />
-        </div>
-        <div class="prose">
-          <div class="hours">
-            <div class="h-top"><i data-lucide="clock"></i><span>Öffnungszeiten Imbiss</span><div class="status" data-hours="imbiss"></div></div>
-            <div class="row"><span class="d">Montag – Freitag</span><span class="t">11:30 – 15:00</span></div>
-            <div class="row"><span class="d">Samstag &amp; Sonntag</span><span class="t">geschlossen</span></div>
-            <a class="call-badge" href="tel:+497071552086">
-              <span class="cb-ic"><i data-lucide="phone"></i></span>
-              <span class="cb-txt"><small>Anruf · Imbiss</small><strong>07071 552086</strong></span>
-              <i data-lucide="chevron-right" class="cb-go"></i>
+    <!-- ===== 04 · Kontakt ===== -->
+    <section class="kontakt section" id="kontakt">
+      <div class="container">
+        <p class="label reveal">(04) — Anfahrt &amp; Kontakt</p>
+        <h2 class="kontakt__title split-words">Besuch <em>uns.</em></h2>
+
+        <div class="kontakt__grid">
+          <div class="kontakt__address reveal">
+            <p class="kontakt__street">Schmiedtorstraße 7 &amp; 11</p>
+            <p class="kontakt__city">72070 Tübingen</p>
+            <p class="kontakt__directions">
+              In der Tübinger Unterstadt, Nähe Parkhaus König — direkt gegenüber
+              dem Bürgeramt / der Fruchtschranne, zwischen Krummer Brücke und
+              Parkhaus König.
+            </p>
+            <a class="btn btn--paper" href="https://www.openstreetmap.org/?mlat=48.522079&amp;mlon=9.052032#map=18/48.522079/9.052032" target="_blank" rel="noopener" data-cursor>
+              <span class="btn__label">Karte öffnen ↗</span>
             </a>
           </div>
-          <p>Im Imbissbereich verwöhnen wir Sie mit thailändischen Köstlichkeiten. Schauen Sie sich einfach unsere täglich wechselnde Speisekarte an – alle Gerichte gibt es auch problemlos zum Mitnehmen.</p>
-          <p class="ig-line">Wenn Sie mehr über unsere Küche und Gerichte erfahren möchten, folgen Sie uns doch auf Instagram: <a class="ig-link" href="https://www.instagram.com/asienhaus.imbiss/" target="_blank" rel="noopener">@asienhaus.imbiss</a>.</p>
-        </div>
-      </div>
-      <div class="features">
-        <span class="chip"><i data-lucide="flame"></i> Nudelsuppe</span>
-        <span class="chip"><i data-lucide="calendar"></i> Täglich wechselnde Tageskarte</span>
-        <span class="chip"><i data-lucide="shopping-bag"></i> Alles auch zum Mitnehmen</span>
-      </div>
-    </section>
 
-    <!-- ===================== INSTAGRAM ===================== -->
-    <section class="card" id="instagram" data-screen-label="Instagram">
-      <div class="card-head">
-        <div class="badge"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></div>
-        <div class="titles">
-          <span class="eyebrow">Aktuelles</span>
-          <h2>Instagram</h2>
-        </div>
-      </div>
-      <div class="insta-body">
-        <div class="insta-consent" id="instaConsent">
-          <svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-          <p>Hier wird unser Instagram-Feed über <b>SociableKit</b> geladen. Dabei werden Daten (u.&nbsp;a. Ihre IP-Adresse) an Dritte – u.&nbsp;a. <b>Meta Platforms, Inc.</b> – übertragen.</p>
-          <button type="button" id="instaBtn">Instagram-Feed laden</button>
-          <a href="https://www.instagram.com/" target="_blank" rel="noopener">Direkt auf Instagram ansehen ↗</a>
-        </div>
-      </div>
-    </section>
+          <div class="kontakt__details">
+            <ul class="clist">
+              <li class="clist__row reveal">
+                <span class="clist__key">Laden</span>
+                <a class="clist__val" href="tel:+497071552088" data-cursor>07071 552088</a>
+              </li>
+              <li class="clist__row reveal">
+                <span class="clist__key">Imbiss</span>
+                <a class="clist__val" href="tel:+497071552086" data-cursor>07071 552086</a>
+              </li>
+              <li class="clist__row reveal">
+                <span class="clist__key">Fax</span>
+                <span class="clist__val">07071 552087</span>
+              </li>
+              <li class="clist__row reveal">
+                <span class="clist__key">E-Mail</span>
+                <a class="clist__val" href="mailto:asienhaustuebingen@yahoo.com" data-cursor>asienhaustuebingen@yahoo.com</a>
+              </li>
+              <li class="clist__row reveal">
+                <span class="clist__key">Instagram</span>
+                <a class="clist__val" href="https://www.instagram.com/asienhaus.imbiss/" target="_blank" rel="noopener" data-cursor>@asienhaus.imbiss</a>
+              </li>
+            </ul>
 
-    <!-- ===================== KONTAKT / ANFAHRT ===================== -->
-    <section class="card" id="kontakt" data-screen-label="Anfahrt &amp; Kontakt">
-      <div class="card-head">
-        <div class="badge"><i data-lucide="map-pin"></i></div>
-        <div class="titles">
-          <span class="eyebrow">So finden Sie uns</span>
-          <h2>Anfahrt &amp; Kontakt</h2>
-        </div>
-      </div>
-      <div class="contact-grid">
-        <div class="info-list">
-          <div class="info-item">
-            <div class="ic"><i data-lucide="map-pin"></i></div>
-            <div><div class="lbl">Anschrift</div>
-              <div class="val">Asien-Haus<br />Schmiedtorstraße 7 und 11<br />72070 Tübingen</div></div>
-          </div>
-          <div class="info-item">
-            <div class="ic"><i data-lucide="navigation"></i></div>
-            <div><div class="lbl">Lage</div>
-              <div class="val">In der Tübinger Unterstadt, nähe Parkhaus König – direkt gegenüber dem Bürgeramt / der Fruchtschranne, zwischen Krummer Brücke und Parkhaus König.</div></div>
-          </div>
-          <div class="info-item">
-            <div class="ic"><i data-lucide="phone"></i></div>
-            <div><div class="lbl">Telefon</div>
-              <div class="val">
-                Feinkost: <a href="tel:+497071552088">07071 – 552088</a><br />
-                Imbiss: <a href="tel:+497071552086">07071 – 552086</a><br />
-                Fax: 07071 – 552087
-              </div></div>
-          </div>
-          <div class="info-item">
-            <div class="ic"><i data-lucide="user"></i></div>
-            <div><div class="lbl">Inhaber</div>
-              <div class="val">Johannes Hegedüs</div></div>
-          </div>
-        </div>
-        <div class="map" id="map">
-          <div class="map-consent" id="mapConsent">
-            <i data-lucide="map-pin"></i>
-            <p>Die Karte lädt Inhalte von <b>OpenStreetMap</b>. Dabei wird Ihre IP-Adresse an OpenStreetMap übertragen.</p>
-            <button type="button" id="mapBtn">Karte laden</button>
-            <a href="https://www.openstreetmap.org/?mlat=48.522079&amp;mlon=9.052032#map=18/48.522079/9.052032" target="_blank" rel="noopener">In OpenStreetMap öffnen ↗</a>
+            <div class="kontakt__hours reveal">
+              <div class="hours">
+                <p class="hours__title">Laden</p>
+                <dl class="hours__grid">
+                  <dt>Mo – Fr</dt><dd>10:00 – 19:00</dd>
+                  <dt>Sa</dt><dd>10:00 – 15:00</dd>
+                  <dt>So</dt><dd>geschlossen</dd>
+                </dl>
+              </div>
+              <div class="hours">
+                <p class="hours__title">Imbiss</p>
+                <dl class="hours__grid">
+                  <dt>Mo – Fr</dt><dd>11:30 – 15:00</dd>
+                  <dt>Sa &amp; So</dt><dd>geschlossen</dd>
+                </dl>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -595,196 +432,31 @@
 
   </main>
 
-  <footer>
-    <div class="copyright">© <span id="year">2026</span> Asien-Haus · Alle Rechte vorbehalten</div>
-    <div class="legal"><a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a> · <button type="button" id="cookieSettings">Cookie-Einstellungen</button></div>
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="container">
+      <p class="footer__big" aria-hidden="true">Asien—Haus</p>
+      <div class="footer__row">
+        <p class="footer__col">
+          Asien-Haus · Inhaber Johannes Hegedüs<br>
+          Schmiedtorstraße 7 &amp; 11 · 72070 Tübingen
+        </p>
+        <nav class="footer__links" aria-label="Rechtliches">
+          <a href="impressum.html" data-cursor>Impressum</a>
+          <a href="datenschutz.html" data-cursor>Datenschutz</a>
+          <a href="https://www.instagram.com/asienhaus.imbiss/" target="_blank" rel="noopener" data-cursor>Instagram</a>
+        </nav>
+        <p class="footer__copy">© 2026 Asien-Haus · Alle Rechte vorbehalten</p>
+      </div>
+    </div>
   </footer>
 
-  <!-- ===================== BACK TO TOP ===================== -->
-  <button type="button" class="to-top" id="toTop" aria-label="Nach oben scrollen">
-    <i data-lucide="arrow-up"></i>
-  </button>
-
-  <!-- ===================== CONSENT BANNER ===================== -->
-  <div class="cookie-bar" id="cookieBar" hidden>
-    <p>Wir laden externe Inhalte (Instagram-Feed und Karte) nur mit Ihrer Einwilligung. Dabei können Daten an Dritte übertragen werden. Mehr dazu in der <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
-    <div class="cb-actions">
-      <button type="button" class="reject" id="cookieReject">Nur notwendige</button>
-      <button type="button" class="accept" id="cookieAccept">Alle akzeptieren</button>
-    </div>
-  </div>
-
-<script>
-  lucide.createIcons();
-
-  /* keep footer copyright year current */
-  (function(){ var y=document.getElementById('year'); if(y) y.textContent=new Date().getFullYear(); })();
-
-  /* ---- back-to-top button: show after scrolling, smooth scroll up ---- */
-  (function(){
-    var btn=document.getElementById('toTop'); if(!btn) return;
-    var onScroll=function(){ btn.classList.toggle('show', window.scrollY>480); };
-    window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
-    btn.addEventListener('click', function(){
-      window.scrollTo({ top:0, behavior:'smooth' });
-    });
-  })();
-
-  /* ---- asian motif watermark: faint line-art cluster inside each card ---- */
-  (function(){
-    var S='fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"';
-    var china='<svg viewBox="0 0 100 100" '+S+'><line x1="50" y1="8" x2="50" y2="18"/><rect x="37" y="18" width="26" height="7" rx="2.5"/><ellipse cx="50" cy="50" rx="25" ry="25"/><path d="M41 27 C 35 42, 35 58, 41 73"/><path d="M59 27 C 65 42, 65 58, 59 73"/><line x1="50" y1="25" x2="50" y2="75"/><rect x="37" y="75" width="26" height="7" rx="2.5"/><line x1="44" y1="82" x2="44" y2="92"/><line x1="50" y1="82" x2="50" y2="94"/><line x1="56" y1="82" x2="56" y2="92"/></svg>';
-    var japan='<svg viewBox="0 0 100 100" '+S+'><path d="M12 28 Q50 16 88 28"/><line x1="16" y1="34" x2="84" y2="34"/><line x1="20" y1="46" x2="80" y2="46"/><line x1="30" y1="30" x2="27" y2="88"/><line x1="70" y1="30" x2="73" y2="88"/><line x1="50" y1="34" x2="50" y2="46"/></svg>';
-    var korea='<svg viewBox="0 0 100 100" '+S+'><circle cx="50" cy="50" r="33"/><path d="M50 17 A 16.5 16.5 0 0 1 50 50 A 16.5 16.5 0 0 0 50 83"/></svg>';
-    var thai='<svg viewBox="0 0 100 100" '+S+'><line x1="50" y1="6" x2="50" y2="15"/><path d="M50 15 C 44 28, 44 40, 50 44 C 56 40, 56 28, 50 15 Z"/><path d="M40 60 L50 44 L60 60 Z"/><path d="M33 78 L50 58 L67 78 Z"/><line x1="29" y1="86" x2="71" y2="86"/></svg>';
-    var group='<div class="wm-group" aria-hidden="true">'+china+korea+japan+thai+'</div>';
-    document.querySelectorAll('main .card').forEach(function(card){
-      card.insertAdjacentHTML('afterbegin', group);
-    });
-  })();
-
-  /* ============ Einwilligung für externe Inhalte (Instagram, Karte) ============ */
-  (function(){
-    var STORAGE_KEY = 'ah-consent';   // 'all' | 'essential'
-    var instaLoaded = false, mapLoaded = false;
-
-    function loadInstagram(){
-      if (instaLoaded) return;
-      var consent = document.getElementById('instaConsent');
-      if (!consent) return;
-      instaLoaded = true;
-      var feed = document.createElement('div');
-      feed.className = 'sk-instagram-feed';
-      feed.setAttribute('data-embed-id', '25687495');
-      consent.replaceWith(feed);
-      var s = document.createElement('script');
-      s.src = 'https://widgets.sociablekit.com/instagram-feed/widget.js';
-      s.defer = true;
-      document.body.appendChild(s);
-    }
-
-    function loadMap(){
-      if (mapLoaded) return;
-      var map = document.getElementById('map');
-      var c = document.getElementById('mapConsent');
-      if (!map || !c) return;
-      mapLoaded = true;
-      var f = document.createElement('iframe');
-      f.loading = 'lazy';
-      f.title = 'Karte Asien-Haus Tübingen, Schmiedtorstraße 11';
-      f.src = 'https://www.openstreetmap.org/export/embed.html?bbox=9.0480%2C48.5203%2C9.0561%2C48.5239&layer=mapnik&marker=48.522079%2C9.052032';
-      c.remove();
-      map.appendChild(f);
-    }
-
-    function getConsent(){ try { return localStorage.getItem(STORAGE_KEY); } catch(e){ return null; } }
-    function setConsent(v){ try { localStorage.setItem(STORAGE_KEY, v); } catch(e){} }
-
-    var bar = document.getElementById('cookieBar');
-    function showBar(){ if (bar) bar.hidden = false; }
-    function hideBar(){ if (bar) bar.hidden = true; }
-
-    function acceptAll(){ setConsent('all'); hideBar(); loadInstagram(); loadMap(); }
-    function rejectAll(){ setConsent('essential'); hideBar(); }
-
-    var ba = document.getElementById('cookieAccept');
-    var br = document.getElementById('cookieReject');
-    if (ba) ba.addEventListener('click', acceptAll);
-    if (br) br.addEventListener('click', rejectAll);
-
-    var cs = document.getElementById('cookieSettings');
-    if (cs) cs.addEventListener('click', showBar);
-
-    // manuelles Einzel-Laden (funktioniert unabhängig von der Banner-Wahl)
-    var ib = document.getElementById('instaBtn');
-    if (ib) ib.addEventListener('click', loadInstagram);
-    var mb = document.getElementById('mapBtn');
-    if (mb) mb.addEventListener('click', loadMap);
-
-    // gespeicherte Entscheidung anwenden
-    var choice = getConsent();
-    if (choice === 'all'){ loadInstagram(); loadMap(); }
-    else if (choice !== 'essential'){ showBar(); }   // noch keine Entscheidung → Banner zeigen
-  })();
-
-  /* ---- live open/closed status, computed in Europe/Berlin time ---- */
-  // schedule[dayIndex] = array of [openMinutes, closeMinutes]; day 0 = Sunday
-  const SCHEDULES = {
-    laden: {
-      label: 'Laden',
-      days: {
-        0: [],                       // So geschlossen
-        1: [[600, 1140]], 2: [[600, 1140]], 3: [[600, 1140]],
-        4: [[600, 1140]], 5: [[600, 1140]],   // Mo–Fr 10:00–19:00
-        6: [[600, 900]]              // Sa 10:00–15:00
-      }
-    },
-    imbiss: {
-      label: 'Imbiss',
-      days: {
-        0: [[690, 900]],             // täglich 11:30–15:00
-        1: [[690, 900]], 2: [[690, 900]], 3: [[690, 900]],
-        4: [[690, 900]], 5: [[690, 900]],
-        6: [[690, 900]]
-      }
-    }
-  };
-  const DAY_NAMES = ['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'];
-  const fmt = m => String(Math.floor(m/60)).padStart(2,'0') + ':' + String(m%60).padStart(2,'0');
-
-  function berlinNow(){
-    const parts = new Intl.DateTimeFormat('en-US', {
-      timeZone:'Europe/Berlin', weekday:'short', hour:'2-digit', minute:'2-digit', hour12:false
-    }).formatToParts(new Date());
-    const wd = parts.find(p=>p.type==='weekday').value;
-    const hour = +parts.find(p=>p.type==='hour').value % 24;
-    const minute = +parts.find(p=>p.type==='minute').value;
-    const dayMap = {Sun:0,Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6};
-    return { day: dayMap[wd], minutes: hour*60 + minute };
-  }
-
-  function evaluate(sched){
-    const { day, minutes } = berlinNow();
-    const today = sched.days[day] || [];
-    for (const [o,c] of today){
-      if (minutes >= o && minutes < c){
-        return { open:true, until:c };
-      }
-    }
-    // not open now → find next opening, scanning up to 7 days ahead
-    for (let i=0;i<8;i++){
-      const d = (day+i)%7;
-      const slots = sched.days[d] || [];
-      for (const [o,c] of slots){
-        if (i===0 && o<=minutes) continue;   // already past today
-        return { open:false, nextDay:d, nextOpen:o, soonToday:i===0 };
-      }
-    }
-    return { open:false };
-  }
-
-  function renderStatus(el){
-    const sched = SCHEDULES[el.dataset.hours];
-    if (!sched) return;
-    const r = evaluate(sched);
-    if (r.open){
-      el.className = 'status open';
-      el.innerHTML = '<span class="dot"></span><span class="txt">Geöffnet'
-        + '<small>bis ' + fmt(r.until) + ' Uhr</small></span>';
-    } else {
-      el.className = 'status closed';
-      let sub = '';
-      if (r.nextOpen != null){
-        const when = r.soonToday ? 'heute' : ('ab ' + DAY_NAMES[r.nextDay]);
-        sub = '<small>öffnet ' + when + ' ' + fmt(r.nextOpen) + ' Uhr</small>';
-      }
-      el.innerHTML = '<span class="dot"></span><span class="txt">Geschlossen' + sub + '</span>';
-    }
-  }
-
-  function refreshStatus(){ document.querySelectorAll('.status[data-hours]').forEach(renderStatus); }
-  refreshStatus();
-  setInterval(refreshStatus, 30000);   // keep fresh as time passes
-</script>
+  <!-- ===== Scripts ===== -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.min.js" defer></script>
+  <script src="js/main.js?v=3" defer></script>
+  <script type="module" src="js/scene.js?v=3"></script>
 </body>
 </html>
